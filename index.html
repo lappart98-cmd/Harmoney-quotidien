@@ -123,6 +123,10 @@ input[type=text]:focus{outline:2px solid var(--ember);outline-offset:1px;border-
 .meta .tag{font-size:12px;padding:5px 11px;border-radius:999px;background:var(--bg2);border:1px solid var(--line);color:var(--muted)}
 .extra{margin-top:14px;padding-top:14px;border-top:1px solid var(--line);font-size:14px;color:var(--muted)}
 .extra b{color:var(--gold);font-weight:600}
+.bal-choices{display:flex;gap:12px;margin-top:16px;justify-content:center;align-items:stretch}
+.bal-choice{flex:1;max-width:200px;padding:18px 14px;border-radius:14px;background:var(--bg2);border:1px solid var(--line);text-align:center;font-family:'Cormorant Garamond',serif;font-size:19px;line-height:1.3;color:var(--text);transition:border-color .2s,transform .15s;display:flex;align-items:center;justify-content:center}
+.bal-choice:active{transform:scale(.96);border-color:var(--ember)}
+.bal-or{align-self:center;font-size:13px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);flex-shrink:0}
 .placeholder{color:var(--muted);font-style:italic;font-family:'Cormorant Garamond',serif;font-size:20px}
 
 .row2{display:flex;gap:10px;margin-top:14px}
@@ -206,6 +210,10 @@ input[type=text]:focus{outline:2px solid var(--ember);outline-offset:1px;border-
     <label class="toggle-row">
       <span><strong>Défis sensoriels</strong><p>Yeux bandés, textures, devinettes tactiles</p></span>
       <span class="sw"><input type="checkbox" id="optSens"><span></span></span>
+    </label>
+    <label class="toggle-row">
+      <span><strong>Balance Game</strong><p>Choix forcé entre deux scénarios — impossible de passer</p></span>
+      <span class="sw"><input type="checkbox" id="optBal"><span></span></span>
     </label>
     <label class="toggle-row">
       <span><strong>Crescendo</strong><p>L'ambiance monte d'elle-même au fil des tours</p></span>
@@ -418,6 +426,35 @@ const SENSORIELS = [
   {l:"{a} caresse le visage de {c} les yeux fermés, comme pour le/la dessiner du bout des doigts.",t:2},
   {l:"{a} embrasse {c} en commençant par la main et en remontant, un baiser à la fois. {c} compte les baisers.",t:3},
 ];
+const BALANCE = [
+  // — t:1 doux / drôle —
+  {a:"Recevoir un massage de 10 minutes",b:"Donner un massage de 10 minutes",t:1},
+  {a:"Un câlin de 2 minutes sans bouger",b:"Un baiser de 30 secondes",t:1},
+  {a:"Petit-déjeuner au lit demain matin",b:"Dîner aux chandelles ce soir",t:1},
+  {a:"Savoir exactement ce que l'autre pense",b:"Garder toujours une part de mystère",t:1},
+  {a:"Un partenaire qui te fait rire tout le temps",b:"Un partenaire qui te fait frissonner tout le temps",t:1},
+  {a:"Ne jamais pouvoir mentir à l'autre",b:"Ne jamais pouvoir garder un secret pour toi",t:1},
+  {a:"Un week-end surprise organisé par l'autre",b:"Organiser toi-même le week-end parfait",t:1},
+  {a:"Recevoir un compliment par jour pendant un mois",b:"Un seul compliment, mais le plus sincère de ta vie",t:1},
+  // — t:2 sensuel —
+  {a:"Être embrassé(e) partout sauf sur les lèvres",b:"Un seul baiser, mais le plus intense possible",t:2},
+  {a:"Les yeux bandés pendant que l'autre te touche",b:"Guider chaque geste de l'autre sans qu'il/elle voie",t:2},
+  {a:"Une nuit entière de préliminaires",b:"Aller droit au but avec passion",t:2},
+  {a:"Toujours savoir ce que l'autre désire",b:"Être surpris(e) à chaque fois",t:2},
+  {a:"Un slow langoureux dans le salon",b:"Un body-shot",t:2},
+  {a:"Qu'on te déshabille très lentement",b:"Qu'on t'arrache tes vêtements",t:2},
+  {a:"Dominer toute la soirée",b:"Se laisser totalement faire",t:2},
+  {a:"Un massage à l'huile par ton/ta partenaire",b:"Un bain chaud ensemble",t:2},
+  // — t:3 hot —
+  {a:"Réaliser ton fantasme le plus doux",b:"Découvrir un fantasme que tu ne connaissais pas",t:3},
+  {a:"Une nuit où tu décides de tout",b:"Une nuit où tu ne décides de rien",t:3},
+  {a:"Un lieu interdit",b:"Un moment interdit",t:3},
+  {a:"Tout dire sur tes envies, sans filtre",b:"Que l'autre devine tes envies sans un mot",t:3},
+  {a:"Que l'autre te regarde sans te toucher, longtemps",b:"Que l'autre te touche sans te regarder",t:3},
+  {a:"Faire durer le plaisir aussi longtemps que possible",b:"Tout lâcher d'un coup",t:3},
+  {a:"Rejouer la première fois, exactement pareil",b:"Inventer quelque chose de complètement nouveau",t:3},
+  {a:"Les mains attachées",b:"Les yeux bandés",t:3},
+];
 const DICE_FACES=["⚀","⚁","⚂","⚃","⚄","⚅"];
 
 /* ============================================================ */
@@ -428,7 +465,7 @@ let S=load();
 function load(){
   try{const d=JSON.parse(localStorage.getItem('lueurs'));if(d)return d;}catch(e){}
   return {players:[{name:"",ex:[],sex:"F"},{name:"",ex:[],sex:"H"}],intensity:2,mode:"des",
-    solo:false,pos:false,defi:false,sens:false,crescendo:false,motStop:"",thrower:0,favs:[],hist:[]};
+    solo:false,pos:false,defi:false,sens:false,bal:false,crescendo:false,motStop:"",thrower:0,favs:[],hist:[]};
 }
 function save(){localStorage.setItem('lueurs',JSON.stringify(S));}
 const pick=a=>a[Math.floor(Math.random()*a.length)];
@@ -493,7 +530,7 @@ function initSeg(sel,key){
   $$(`${sel} button`).forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.v==S[key])));
 }
 initSeg("#intensity","intensity");initSeg("#mode","mode");
-["solo|optSolo","pos|optPos","defi|optDefi","sens|optSens","crescendo|optCresc"].forEach(p=>{const[k,id]=p.split("|");$("#"+id).checked=S[k];$("#"+id).onchange=e=>{S[k]=e.target.checked;save();};});
+["solo|optSolo","pos|optPos","defi|optDefi","sens|optSens","bal|optBal","crescendo|optCresc"].forEach(p=>{const[k,id]=p.split("|");$("#"+id).checked=S[k];$("#"+id).onchange=e=>{S[k]=e.target.checked;save();};});
 $("#motStop").value=S.motStop;$("#motStop").oninput=e=>{S.motStop=e.target.value;save();};
 
 /* ---- Navigation ---- */
@@ -570,12 +607,26 @@ function buildAV(actorI){
   const txt=d.l.replace("{a}",names()[actorI]).replace("{c}",names()[cibleI]).replace("{d}",draw(DUREES,'dur'));
   return {kind:"Action",main:txt.replace(names()[actorI],`<b>${names()[actorI]}</b>`).replace(names()[cibleI],`<b>${names()[cibleI]}</b>`),meta:[],plain:"Action — "+txt};
 }
+function buildBalance(actorI){
+  const b=draw(byTier(BALANCE),'bal');
+  return {kind:"Balance Game",
+    main:`<b>${names()[actorI]}</b>, tu dois choisir :`,
+    bal:b,
+    meta:["⚖️ choix forcé"],
+    plain:`Balance — ${names()[actorI]} : « ${b.a} » ou « ${b.b} »`};
+}
 function compose(){
   const a=S.thrower;
+  if(S.bal && Math.random()<0.2){
+    let r=buildBalance(a);
+    r.extras=[];
+    r.plain += "";
+    return r;
+  }
   let r = S.mode==="av" ? buildAV(a) : S.mode==="mix" ? (Math.random()<0.5?buildDice(a):buildAV(a)) : buildDice(a);
   let extras=[];
-  if(S.pos && r.kind!=="Action solo" && r.kind!=="Vérité") extras.push(["Position",draw(byTier(POSITIONS),'pos').l]);
-  if(S.defi && r.kind!=="Action solo") extras.push(["Défi",draw(byTier(DEFIS),'defi').l]);
+  if(S.pos && r.kind!=="Action solo" && r.kind!=="Vérité" && r.kind!=="Balance Game") extras.push(["Position",draw(byTier(POSITIONS),'pos').l]);
+  if(S.defi && r.kind!=="Action solo" && r.kind!=="Balance Game") extras.push(["Défi",draw(byTier(DEFIS),'defi').l]);
   r.extras=extras; r.plain += extras.map(e=>` | ${e[0]}: ${e[1]}`).join("");
   return r;
 }
@@ -584,6 +635,7 @@ function renderResult(r){
   current=r;
   let html=`<p class="kind">${r.kind}</p><p class="main">${r.main}</p>`;
   if(r.sub)html+=`<p class="main" style="font-size:22px;color:var(--text)">« ${r.sub} »</p>`;
+  if(r.bal)html+=`<div class="bal-choices"><div class="bal-choice">${r.bal.a}</div><span class="bal-or">ou</span><div class="bal-choice">${r.bal.b}</div></div>`;
   if(r.meta&&r.meta.length)html+=`<div class="meta">${r.meta.map(m=>`<span class="tag">${m}</span>`).join("")}</div>`;
   if(r.extras&&r.extras.length)html+=`<div class="extra">${r.extras.map(e=>`<b>${e[0]} :</b> ${e[1]}`).join("<br>")}</div>`;
   $("#result").innerHTML=html;
