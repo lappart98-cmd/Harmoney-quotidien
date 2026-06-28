@@ -207,18 +207,6 @@ input[type=text]:focus{outline:2px solid var(--ember);outline-offset:1px;border-
       <span><strong>Crescendo</strong><p>L'ambiance monte d'elle-même au fil des tours</p></span>
       <span class="sw"><input type="checkbox" id="optCresc"><span></span></span>
     </label>
-    <label class="toggle-row">
-      <span><strong>Paires mixtes uniquement</strong><p>Les actions n'apparient que des genres différents (H↔F)</p></span>
-      <span class="sw"><input type="checkbox" id="optMixte"><span></span></span>
-    </label>
-    <label class="toggle-row">
-      <span><strong>Pas de duo homme–homme</strong><p>Aucune action n'appariera deux hommes</p></span>
-      <span class="sw"><input type="checkbox" id="optNoHH"><span></span></span>
-    </label>
-    <label class="toggle-row">
-      <span><strong>Pas de duo femme–femme</strong><p>Idem entre deux femmes</p></span>
-      <span class="sw"><input type="checkbox" id="optNoFF"><span></span></span>
-    </label>
   </div>
 
   <div class="card">
@@ -296,6 +284,21 @@ const ACTIONS = [
   {v:"souffler doucement sur", t:2},
   {v:"mordiller tendrement", t:3},
   {v:"embrasser langoureusement", t:3},
+  {v:"lécher", t:3},
+  {v:"sucer", t:3},
+  {v:"dévorer", t:3},
+  {v:"mordre", t:3},
+  {v:"téter", t:3},
+  {v:"passer la langue en cercles sur", t:3},
+  {v:"suçoter", t:3},
+  {v:"embrasser voracement", t:3},
+  {v:"lécher de bas en haut", t:3},
+  {v:"aspirer doucement", t:3},
+  {v:"titiller avec le bout de la langue", t:3},
+  {v:"mordre, lécher, recommencer sur", t:3},
+  {v:"couvrir de baisers humides", t:3},
+  {v:"téter lentement", t:3},
+  {v:"goûter avec avidité", t:3},
 ];
 const ZONES = [
   {l:"la main", tag:"mains", t:1},
@@ -390,7 +393,7 @@ let S=load();
 function load(){
   try{const d=JSON.parse(localStorage.getItem('lueurs'));if(d)return d;}catch(e){}
   return {players:[{name:"",ex:[],sex:"F"},{name:"",ex:[],sex:"H"}],intensity:2,mode:"des",
-    solo:false,pos:false,defi:false,crescendo:false,noHH:false,noFF:false,mixteOnly:false,motStop:"",thrower:0,favs:[],hist:[]};
+    solo:false,pos:false,defi:false,crescendo:false,motStop:"",thrower:0,favs:[],hist:[]};
 }
 function save(){localStorage.setItem('lueurs',JSON.stringify(S));}
 const pick=a=>a[Math.floor(Math.random()*a.length)];
@@ -455,7 +458,7 @@ function initSeg(sel,key){
   $$(`${sel} button`).forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.v==S[key])));
 }
 initSeg("#intensity","intensity");initSeg("#mode","mode");
-["solo|optSolo","pos|optPos","defi|optDefi","crescendo|optCresc","noHH|optNoHH","noFF|optNoFF","mixteOnly|optMixte"].forEach(p=>{const[k,id]=p.split("|");$("#"+id).checked=S[k];$("#"+id).onchange=e=>{S[k]=e.target.checked;save();};});
+["solo|optSolo","pos|optPos","defi|optDefi","crescendo|optCresc"].forEach(p=>{const[k,id]=p.split("|");$("#"+id).checked=S[k];$("#"+id).onchange=e=>{S[k]=e.target.checked;save();};});
 $("#motStop").value=S.motStop;$("#motStop").oninput=e=>{S.motStop=e.target.value;save();};
 
 /* ---- Navigation ---- */
@@ -477,9 +480,7 @@ function pickTarget(i){
   const a=S.players[i].sex;
   const c=S.players.map((_,k)=>k).filter(k=>k!==i).filter(k=>{
     const b=S.players[k].sex;
-    if(S.mixteOnly && a!=="A" && b!=="A" && a===b) return false;
-    if(S.noHH && a==="H" && b==="H") return false;
-    if(S.noFF && a==="F" && b==="F") return false;
+    if(a!=="A" && b!=="A" && a===b) return false;
     return true;
   });
   return c.length?pick(c):null;
@@ -488,10 +489,10 @@ function zoneOkFor(cibleIdx,zoneTag){return !S.players[cibleIdx].ex.includes(zon
 
 function buildDice(actorI){
   const cibleI=pickTarget(actorI);
-  if(cibleI===null && S.mixteOnly){
+  if(cibleI===null){
     return {kind:"Tour passé",main:"Pas de paire mixte possible — passez votre tour.",meta:[],plain:"Pas de paire mixte possible — passez votre tour."};
   }
-  if(cibleI===null || (S.solo && Math.random()<0.33)){
+  if(S.solo && Math.random()<0.33){
     const s=draw(byTier(SOLO),'solo');
     return {kind:"Action solo",main:`<b>${names()[actorI]}</b> : ${s.l}.`,meta:[],plain:`${names()[actorI]} : ${s.l}.`};
   }
@@ -511,9 +512,7 @@ function buildAV(actorI){
   }
   const cibleI=pickTarget(actorI);
   if(cibleI===null){
-    if(S.mixteOnly) return {kind:"Tour passé",main:"Pas de paire mixte possible — passez votre tour.",meta:[],plain:"Pas de paire mixte possible — passez votre tour."};
-    const q=draw(byTier(VERITES),'ver');
-    return {kind:"Vérité",main:`<b>${names()[actorI]}</b> répond :`,meta:[],sub:q.l,plain:`Vérité — ${names()[actorI]} : ${q.l}`};
+    return {kind:"Tour passé",main:"Pas de paire mixte possible — passez votre tour.",meta:[],plain:"Pas de paire mixte possible — passez votre tour."};
   }
   let pool=byTier(DARES).filter(d=>!d.zone||zoneOkFor(cibleI,d.zone));
   if(!pool.length)pool=byTier(DARES).filter(d=>!d.zone);
