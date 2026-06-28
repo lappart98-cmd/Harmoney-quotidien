@@ -204,6 +204,10 @@ input[type=text]:focus{outline:2px solid var(--ember);outline-offset:1px;border-
       <span class="sw"><input type="checkbox" id="optDefi"><span></span></span>
     </label>
     <label class="toggle-row">
+      <span><strong>Défis sensoriels</strong><p>Yeux bandés, textures, devinettes tactiles</p></span>
+      <span class="sw"><input type="checkbox" id="optSens"><span></span></span>
+    </label>
+    <label class="toggle-row">
       <span><strong>Crescendo</strong><p>L'ambiance monte d'elle-même au fil des tours</p></span>
       <span class="sw"><input type="checkbox" id="optCresc"><span></span></span>
     </label>
@@ -383,6 +387,37 @@ const DARES = [
   {l:"{a} chuchote à {c} la phrase la plus kitsch possible, sans rire, {d}.",t:3},
   {l:"{a} prend la pose la plus sexy-ridicule et {c} doit garder son sérieux.",t:3},
 ];
+const SENSORIELS = [
+  // — yeux bandés —
+  {l:"{a} bande les yeux de {c}. Touche-le/la à 3 endroits différents — {c} doit deviner où.",t:1},
+  {l:"{a} bande les yeux de {c} et lui murmure 3 compliments, tout près de l'oreille.",t:1},
+  {l:"{a} bande les yeux de {c} et le/la guide à travers la pièce, main dans la main.",t:1},
+  {l:"{a} bande les yeux de {c} et effleure son visage du bout des doigts — {c} doit rester immobile.",t:2},
+  {l:"{a} bande les yeux de {c} et souffle doucement sur son cou, ses épaules, ses mains. {c} décrit ce qu'il/elle ressent.",t:2},
+  {l:"{a} bande les yeux de {c} et passe un glaçon puis ses lèvres chaudes sur sa peau — {c} doit deviner lequel.",t:2},
+  {l:"{a} bande les yeux de {c} et utilise 3 textures différentes (tissu, bout des doigts, souffle) — {c} devine chacune.",t:2},
+  {l:"{a} bande les yeux de {c} et embrasse une zone surprise — {c} doit dire où sans toucher.",t:3},
+  {l:"{a} bande les yeux de {c} et alterne caresses très légères et pressions fermes. {c} dit ce qu'il/elle préfère.",t:3},
+  {l:"{a} bande les yeux de {c} et le/la touche avec un objet du quotidien — {c} doit deviner l'objet.",t:2},
+  // — devinettes tactiles —
+  {l:"{a} dessine un mot sur le dos de {c} avec le doigt — {c} doit deviner le mot.",t:1},
+  {l:"{a} dessine un cœur avec le doigt quelque part sur la peau de {c} — {c} doit localiser où.",t:1},
+  {l:"{a} touche {c} à un endroit précis. {c}, les yeux fermés, doit toucher {a} exactement au même endroit.",t:2},
+  // — souffle & température —
+  {l:"{a} souffle à différentes distances sur le cou de {c} — {c} dit « plus près » ou « reste là ».",t:2},
+  {l:"{a} prend un glaçon dans la bouche, puis embrasse la peau de {c}. Effet garanti.",t:3},
+  {l:"{a} alterne souffle chaud et souffle froid sur les poignets de {c}, {d}.",t:2},
+  // — écoute & voix —
+  {l:"{a} murmure quelque chose à {c} si bas que {c} doit s'approcher tout près pour entendre.",t:1},
+  {l:"{a} décrit à voix haute, les yeux fermés, ce qu'il/elle aimerait que {c} lui fasse.",t:3},
+  {l:"{a} lit un passage inventé d'un roman très sensuel à {c}, en chuchotant.",t:2},
+  // — exploration guidée —
+  {l:"{c} guide la main de {a} vers l'endroit où il/elle veut être touché(e), sans dire un mot.",t:2},
+  {l:"{a} explore le bras de {c} en remontant très lentement du poignet à l'épaule. {c} dit « stop » quand c'est trop intense.",t:2},
+  {l:"{a} masse une seule main de {c} pendant 30 secondes, en silence complet.",t:1},
+  {l:"{a} caresse le visage de {c} les yeux fermés, comme pour le/la dessiner du bout des doigts.",t:2},
+  {l:"{a} embrasse {c} en commençant par la main et en remontant, un baiser à la fois. {c} compte les baisers.",t:3},
+];
 const DICE_FACES=["⚀","⚁","⚂","⚃","⚄","⚅"];
 
 /* ============================================================ */
@@ -393,7 +428,7 @@ let S=load();
 function load(){
   try{const d=JSON.parse(localStorage.getItem('lueurs'));if(d)return d;}catch(e){}
   return {players:[{name:"",ex:[],sex:"F"},{name:"",ex:[],sex:"H"}],intensity:2,mode:"des",
-    solo:false,pos:false,defi:false,crescendo:false,motStop:"",thrower:0,favs:[],hist:[]};
+    solo:false,pos:false,defi:false,sens:false,crescendo:false,motStop:"",thrower:0,favs:[],hist:[]};
 }
 function save(){localStorage.setItem('lueurs',JSON.stringify(S));}
 const pick=a=>a[Math.floor(Math.random()*a.length)];
@@ -458,7 +493,7 @@ function initSeg(sel,key){
   $$(`${sel} button`).forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.v==S[key])));
 }
 initSeg("#intensity","intensity");initSeg("#mode","mode");
-["solo|optSolo","pos|optPos","defi|optDefi","crescendo|optCresc"].forEach(p=>{const[k,id]=p.split("|");$("#"+id).checked=S[k];$("#"+id).onchange=e=>{S[k]=e.target.checked;save();};});
+["solo|optSolo","pos|optPos","defi|optDefi","sens|optSens","crescendo|optCresc"].forEach(p=>{const[k,id]=p.split("|");$("#"+id).checked=S[k];$("#"+id).onchange=e=>{S[k]=e.target.checked;save();};});
 $("#motStop").value=S.motStop;$("#motStop").oninput=e=>{S.motStop=e.target.value;save();};
 
 /* ---- Navigation ---- */
@@ -487,10 +522,22 @@ function pickTarget(i){
 }
 function zoneOkFor(cibleIdx,zoneTag){return !S.players[cibleIdx].ex.includes(zoneTag);}
 
+function buildSensoriel(actorI){
+  const cibleI=pickTarget(actorI);
+  if(cibleI===null) return null;
+  const s=draw(byTier(SENSORIELS),'sens');
+  const txt=s.l.replace(/\{a\}/g,names()[actorI]).replace(/\{c\}/g,names()[cibleI]).replace(/\{d\}/g,draw(DUREES,'dur'));
+  const main=txt.replace(new RegExp(names()[actorI].replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'g'),`<b>${names()[actorI]}</b>`).replace(new RegExp(names()[cibleI].replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'g'),`<b>${names()[cibleI]}</b>`);
+  return {kind:"Sensoriel",main,meta:["👁️ yeux bandés"],plain:"Sensoriel — "+txt};
+}
+
 function buildDice(actorI){
   const cibleI=pickTarget(actorI);
   if(cibleI===null){
     return {kind:"Tour passé",main:"Pas de paire mixte possible — passez votre tour.",meta:[],plain:"Pas de paire mixte possible — passez votre tour."};
+  }
+  if(S.sens && Math.random()<0.25){
+    const r=buildSensoriel(actorI); if(r) return r;
   }
   if(S.solo && Math.random()<0.33){
     const s=draw(byTier(SOLO),'solo');
@@ -506,6 +553,9 @@ function buildDice(actorI){
     plain:`${names()[actorI]} → ${act.v} ${names()[cibleI]} · ${zone.l} · ${inten.l} · ${dur}`};
 }
 function buildAV(actorI){
+  if(S.sens && Math.random()<0.2){
+    const r=buildSensoriel(actorI); if(r) return r;
+  }
   if(Math.random()<0.5){
     const q=draw(byTier(VERITES),'ver');
     return {kind:"Vérité",main:`<b>${names()[actorI]}</b> répond :`,meta:[],sub:q.l,plain:`Vérité — ${names()[actorI]} : ${q.l}`};
