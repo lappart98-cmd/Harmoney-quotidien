@@ -289,12 +289,29 @@ input[type=text]:focus{outline:2px solid var(--ember);outline-offset:1px;border-
    CONTENU — tout est éditable ici. Niveaux : 1 Doux · 2 Sensuel · 3 Hot
    ============================================================ */
 const ACTIONS = [
+  // ——— Tier 1 · Doux (10) ———
   {v:"déposer un baiser sur", t:1},
   {v:"effleurer", t:1},
   {v:"embrasser", t:1},
+  {v:"frôler du bout des doigts", t:1},
+  {v:"caresser la joue de", t:1},
+  {v:"tenir tendrement la main de", t:1},
+  {v:"poser les lèvres sur", t:1},
+  {v:"passer la main dans les cheveux de", t:1},
+  {v:"enlacer doucement", t:1},
+  {v:"déposer un bisou papillon sur", t:1},
+  // ——— Tier 2 · Sensuel (10) ———
   {v:"masser", t:2},
   {v:"caresser", t:2},
   {v:"souffler doucement sur", t:2},
+  {v:"embrasser lentement", t:2},
+  {v:"dessiner du doigt sur", t:2},
+  {v:"frôler avec les lèvres", t:2},
+  {v:"pétrir doucement", t:2},
+  {v:"respirer contre la peau de", t:2},
+  {v:"parcourir du bout des ongles", t:2},
+  {v:"déposer une traînée de baisers sur", t:2},
+  // ——— Tier 3 · Hot (15) ———
   {v:"mordiller tendrement", t:3},
   {v:"embrasser langoureusement", t:3},
   {v:"lécher", t:3},
@@ -308,51 +325,106 @@ const ACTIONS = [
   {v:"lécher de bas en haut", t:3},
   {v:"aspirer doucement", t:3},
   {v:"titiller avec le bout de la langue", t:3},
-  {v:"mordre, lécher, recommencer sur", t:3},
   {v:"couvrir de baisers humides", t:3},
-  {v:"téter lentement", t:3},
   {v:"goûter avec avidité", t:3},
 ];
 const ZONES = [
+  // ——— Tier 1 · Doux (6) ———
   {l:"la main", tag:"mains", t:1},
   {l:"le poignet", tag:"mains", t:1},
   {l:"la joue", tag:"visage", t:1},
   {l:"l'oreille", tag:"oreille", t:1},
+  {l:"le bout des doigts", tag:"mains", t:1},
+  {l:"le front", tag:"visage", t:1},
+  // ——— Tier 2 · Sensuel (8) ———
   {l:"le cou", tag:"cou", t:2},
   {l:"la nuque", tag:"cou", t:2},
   {l:"les épaules", tag:"dos", t:2},
   {l:"la clavicule", tag:"torse", t:2},
   {l:"les lèvres", tag:"levres", t:2},
+  {l:"le creux du coude", tag:"mains", t:2},
+  {l:"le haut du dos", tag:"dos", t:2},
+  {l:"la tempe", tag:"visage", t:2},
+  // ——— Tier 3 · Hot (8) ———
   {l:"le dos", tag:"dos", t:3},
   {l:"le ventre", tag:"ventre", t:3},
   {l:"la hanche", tag:"hanches", t:3},
   {l:"l'intérieur du poignet", tag:"mains", t:3},
+  {l:"le creux des reins", tag:"dos", t:3},
+  {l:"l'intérieur de la cuisse", tag:"hanches", t:3},
+  {l:"le bas du ventre", tag:"ventre", t:3},
+  {l:"le lobe de l'oreille", tag:"oreille", t:3},
 ];
-const INTENS = [{l:"tout en douceur",t:1},{l:"lentement",t:2},{l:"avec malice",t:2},{l:"intensément",t:3}];
-const DUREES = ["10 secondes","20 secondes","30 secondes","jusqu'au prochain tour"];
+const INTENS = [
+  {l:"tout en douceur",t:1},{l:"avec tendresse",t:1},{l:"délicatement",t:1},
+  {l:"lentement",t:2},{l:"avec malice",t:2},{l:"en prenant ton temps",t:2},{l:"sensuellement",t:2},
+  {l:"intensément",t:3},{l:"avec passion",t:3},{l:"comme si c'était la dernière fois",t:3}
+];
+const DUREES = ["10 secondes","20 secondes","30 secondes","45 secondes","1 minute","jusqu'au prochain tour"];
 
 const SOLO = [
+  // ——— Tier 1 · Doux (8) ———
   {l:"ferme les yeux et décris à voix haute la sensation que tu préfères",t:1},
   {l:"adresse un compliment sincère à la personne de ton choix",t:1},
   {l:"fais ton regard le plus séducteur pendant 10 secondes, sans cligner",t:1},
   {l:"invente un slogan de pub pour te vendre comme partenaire idéal(e)",t:1},
+  {l:"mime au ralenti ta technique de séduction, avec le regard qui va avec",t:1},
+  {l:"dis à voix haute 3 choses que tu adores chez la personne à ta gauche",t:1},
+  {l:"fais la plus belle déclaration d'amour en 15 secondes chrono",t:1},
+  {l:"raconte ton meilleur souvenir d'amour en une seule phrase",t:1},
+  // ——— Tier 2 · Sensuel (8) ———
   {l:"raconte le moment le plus tendre de ta soirée",t:2},
+  {l:"décris avec des mots ce que tes mains aimeraient faire maintenant",t:2},
+  {l:"ferme les yeux et laisse la personne de ton choix te toucher le visage — devine qui c'est",t:2},
+  {l:"chuchote à l'oreille de ton/ta voisin(e) ce que tu trouves le plus beau chez lui/elle",t:2},
+  {l:"mime avec tes mains ce que tu ressens pour quelqu'un ici, sans parler",t:2},
+  {l:"décris en 3 mots comment tu embrasses",t:2},
+  {l:"montre sur toi-même où tu aimes qu'on te touche, sans rien dire",t:2},
+  {l:"fais le bruit le plus sexy que tu peux, sans rire",t:2},
+  // ——— Tier 3 · Hot (6) ———
   {l:"murmure tout bas ce dont tu as envie maintenant",t:3},
+  {l:"décris ton fantasme préféré en une phrase, les yeux fermés",t:3},
+  {l:"retire un vêtement de ton choix, lentement",t:3},
+  {l:"imite ta meilleure expression de plaisir — les autres jugent la crédibilité",t:3},
+  {l:"chuchote à la personne de ton choix ce que tu lui ferais si vous étiez seuls",t:3},
+  {l:"décris la scène la plus hot que tu aies en tête, là, maintenant",t:3},
 ];
 const POSITIONS = [
   {l:"assis l'un face à l'autre",t:1},
   {l:"côte à côte, épaule contre épaule",t:1},
+  {l:"mains dans les mains",t:1},
+  {l:"front contre front",t:1},
   {l:"l'un derrière l'autre",t:2},
   {l:"allongés tout près",t:2},
+  {l:"face à face, genoux qui se touchent",t:2},
+  {l:"assis dos contre dos",t:2},
   {l:"l'un sur les genoux de l'autre",t:3},
+  {l:"enlacés, visages très proches",t:3},
+  {l:"l'un allongé, l'autre au-dessus",t:3},
+  {l:"cuillère, l'un contre l'autre",t:3},
 ];
 const DEFIS = [
+  // ——— Tier 1 · Doux (6) ———
   {l:"maintiens le regard sans rire pendant tout le tour",t:1},
   {l:"chuchote chaque mot",t:1},
   {l:"parle avec une voix sensuelle volontairement ridicule",t:1},
   {l:"termine chaque phrase par « mon chaton »",t:1},
+  {l:"fais tout au ralenti, comme dans un film romantique",t:1},
+  {l:"souris sans t'arrêter pendant toute l'action",t:1},
+  // ——— Tier 2 · Sensuel (6) ———
   {l:"garde une main dans le dos",t:2},
+  {l:"fais-le les yeux fermés",t:2},
+  {l:"respire profondément entre chaque geste",t:2},
+  {l:"ne touche qu'avec un seul doigt",t:2},
+  {l:"rapproche-toi le plus possible sans jamais toucher les lèvres",t:2},
+  {l:"décris ce que tu ressens à voix haute pendant l'action",t:2},
+  // ——— Tier 3 · Hot (6) ———
   {l:"laisse l'autre guider entièrement le geste",t:3},
+  {l:"maintiens le contact visuel tout du long, sans détourner le regard",t:3},
+  {l:"fais-le comme si personne d'autre ne regardait",t:3},
+  {l:"alterne entre très lent et très intense",t:3},
+  {l:"utilise uniquement ta bouche, pas tes mains",t:3},
+  {l:"murmure exactement ce que tu fais, pendant que tu le fais",t:3},
 ];
 const VERITES = [
   // ——— Tier 1 · Doux (34) ———
@@ -463,25 +535,49 @@ const VERITES = [
 ];
 // Dares : {acteur} agit envers {cible}. zone facultative (filtrée par limites)
 const DARES = [
+  // ——— Tier 1 · Doux (12) ———
   {l:"{a} murmure un compliment à l'oreille de {c}.",t:1,zone:"oreille"},
   {l:"{a} tient la main de {c} jusqu'au prochain tour.",t:1,zone:"mains"},
   {l:"{a} regarde {c} dans les yeux, en silence, {d}.",t:1},
-  {l:"{a} embrasse {c} dans le cou, {d}.",t:2,zone:"cou"},
-  {l:"{a} masse les épaules de {c}.",t:2,zone:"dos"},
-  {l:"{a} retire un vêtement de son choix.",t:2},
-  {l:"{a} mordille tendrement l'oreille de {c}.",t:3,zone:"oreille"},
-  {l:"{a} caresse lentement {c}, {d}.",t:3},
-  {l:"{a} laisse {c} guider ses mains.",t:3},
-  {l:"{a} murmure à {c} ce dont il/elle a envie.",t:3},
-  // — versions marrantes —
   {l:"{a} doit faire rire {c} en moins de 10 secondes, sans le/la toucher.",t:1},
   {l:"{a} déclare sa flamme à {c}, façon film des années 80.",t:1},
   {l:"{a} fait à {c} le clin d'œil le plus raté possible.",t:1},
-  {l:"{a} mime une scène romantique au ralenti avec {c}.",t:2,zone:""},
+  {l:"{a} caresse la joue de {c} du bout des doigts, {d}.",t:1,zone:"visage"},
+  {l:"{a} enlace {c} par derrière et reste comme ça, {d}.",t:1},
+  {l:"{a} prend la main de {c} et dépose un baiser dessus.",t:1,zone:"mains"},
+  {l:"{a} dit à {c} 3 choses qu'il/elle trouve belles chez lui/elle.",t:1},
+  {l:"{a} replace une mèche de cheveux de {c} derrière son oreille.",t:1,zone:"oreille"},
+  {l:"{a} ferme les yeux et {c} lui touche le visage — {a} décrit ce qu'il/elle ressent.",t:1,zone:"visage"},
+  // ——— Tier 2 · Sensuel (14) ———
+  {l:"{a} embrasse {c} dans le cou, {d}.",t:2,zone:"cou"},
+  {l:"{a} masse les épaules de {c}, {d}.",t:2,zone:"dos"},
+  {l:"{a} retire un vêtement de son choix.",t:2},
+  {l:"{a} mime une scène romantique au ralenti avec {c}.",t:2},
   {l:"{a} improvise un slogan de pub pour séduire {c}.",t:2},
   {l:"{a} fait un strip-tease... d'une seule chaussette.",t:2},
+  {l:"{a} souffle lentement dans le cou de {c}, {d}.",t:2,zone:"cou"},
+  {l:"{a} dessine un mot secret sur le dos de {c} avec le doigt — {c} doit deviner.",t:2,zone:"dos"},
+  {l:"{a} parcourt le bras de {c} du bout des doigts, de l'épaule au poignet.",t:2,zone:"mains"},
+  {l:"{a} pose ses lèvres sur la nuque de {c} sans bouger, {d}.",t:2,zone:"cou"},
+  {l:"{a} s'approche tout près de {c}, lèvres à 2 cm, sans l'embrasser, {d}.",t:2,zone:"levres"},
+  {l:"{a} murmure à l'oreille de {c} ce qu'il/elle aimerait lui faire ce soir.",t:2,zone:"oreille"},
+  {l:"{a} masse la main de {c} pendant 30 secondes en le/la regardant dans les yeux.",t:2,zone:"mains"},
+  {l:"{a} dépose une ligne de baisers de la main jusqu'à l'épaule de {c}.",t:2,zone:"mains"},
+  // ——— Tier 3 · Hot (14) ———
+  {l:"{a} mordille tendrement l'oreille de {c}, {d}.",t:3,zone:"oreille"},
+  {l:"{a} caresse lentement {c}, {d}.",t:3},
+  {l:"{a} laisse {c} guider ses mains où il/elle veut.",t:3},
+  {l:"{a} murmure à {c} ce dont il/elle a envie, tout près de sa bouche.",t:3},
   {l:"{a} chuchote à {c} la phrase la plus kitsch possible, sans rire, {d}.",t:3},
   {l:"{a} prend la pose la plus sexy-ridicule et {c} doit garder son sérieux.",t:3},
+  {l:"{a} embrasse le ventre de {c}, lentement, {d}.",t:3,zone:"ventre"},
+  {l:"{a} passe la main dans le dos de {c}, sous le vêtement.",t:3,zone:"dos"},
+  {l:"{a} mord doucement la lèvre inférieure de {c}.",t:3,zone:"levres"},
+  {l:"{a} embrasse la hanche de {c} en le/la tenant par la taille.",t:3,zone:"hanches"},
+  {l:"{a} choisit une zone du corps de {c} et l'embrasse comme si c'était la dernière fois.",t:3},
+  {l:"{a} s'allonge et laisse {c} explorer son corps avec les lèvres, {d}.",t:3},
+  {l:"{a} retire un vêtement à {c}, lentement, en le/la regardant.",t:3},
+  {l:"{a} embrasse {c} comme il/elle en a vraiment envie, sans retenue.",t:3,zone:"levres"},
 ];
 const SENSORIELS = [
   // — yeux bandés —
