@@ -72,11 +72,11 @@ export default function Home() {
               navOpen ? "max-sm:flex" : "max-sm:hidden"
             }`}
           >
-            <a href="#how" onClick={closeNav} className="text-[11.5px] font-semibold uppercase tracking-[.1em] text-dim px-2.5 py-1.5 rounded-lg hover:text-chalk transition-colors max-sm:py-3 max-sm:px-0">
-              Comment
-            </a>
             <a href="#menus" onClick={closeNav} className="text-[11.5px] font-semibold uppercase tracking-[.1em] text-dim px-2.5 py-1.5 rounded-lg hover:text-chalk transition-colors max-sm:py-3 max-sm:px-0">
               Menus
+            </a>
+            <a href="#how" onClick={closeNav} className="text-[11.5px] font-semibold uppercase tracking-[.1em] text-dim px-2.5 py-1.5 rounded-lg hover:text-chalk transition-colors max-sm:py-3 max-sm:px-0">
+              Comment
             </a>
             <a href="#contact" onClick={closeNav} className="text-[11.5px] font-semibold uppercase tracking-[.1em] text-dim px-2.5 py-1.5 rounded-lg hover:text-chalk transition-colors max-sm:py-3 max-sm:px-0">
               Contact
@@ -197,27 +197,6 @@ export default function Home() {
         </div>
       </div>
 
-      {/* ═══ COMMENT CA MARCHE ═══ */}
-      <section className="py-[72px] px-5" id="how">
-        <div className="max-w-[620px] mx-auto">
-          <RevealOnScroll>
-            <p className="text-[11px] font-semibold tracking-[.18em] uppercase text-faint mb-2.5">
-              Simple comme bonjour
-            </p>
-          </RevealOnScroll>
-          <RevealOnScroll>
-            <h2 className="font-display text-[clamp(26px,7vw,38px)] font-bold leading-[.95] uppercase tracking-tight mb-2.5">
-              Comment <em className="not-italic text-lime">ca marche</em>
-            </h2>
-          </RevealOnScroll>
-          <div className="flex flex-col gap-3 mt-7">
-            <StepCard n="1" icon="chat" title="Contacte-nous" desc="Envoie-nous ton visuel ou ton idee par WhatsApp. On te repond en moins de 2h avec un devis gratuit." />
-            <StepCard n="2" icon="edit" title="On prepare" desc="On adapte ton visuel, tu valides le BAT. Tu choisis ton textile et ta technique (DTF, stickers UV ou broderie)." />
-            <StepCard n="3" icon="box" title="C'est pret" desc="Production express dans notre atelier a Gentilly. Retrait sur place ou livraison." />
-          </div>
-        </div>
-      </section>
-
       {/* ═══ MENUS ═══ */}
       <section className="py-[72px] px-5" id="menus">
         <div className="max-w-[620px] mx-auto">
@@ -270,6 +249,27 @@ export default function Home() {
               *Prix indicatifs T-Shirt Basique + flocage dos. Tarif selon textile et emplacements.
             </p>
           </RevealOnScroll>
+        </div>
+      </section>
+
+      {/* ═══ COMMENT CA MARCHE ═══ */}
+      <section className="py-[72px] px-5" id="how">
+        <div className="max-w-[620px] mx-auto">
+          <RevealOnScroll>
+            <p className="text-[11px] font-semibold tracking-[.18em] uppercase text-faint mb-2.5">
+              Simple comme bonjour
+            </p>
+          </RevealOnScroll>
+          <RevealOnScroll>
+            <h2 className="font-display text-[clamp(26px,7vw,38px)] font-bold leading-[.95] uppercase tracking-tight mb-2.5">
+              Comment <em className="not-italic text-lime">ca marche</em>
+            </h2>
+          </RevealOnScroll>
+          <div className="flex flex-col gap-3 mt-7">
+            <StepCard n="1" icon="chat" title="Contacte-nous" desc="Envoie-nous ton visuel ou ton idee par WhatsApp. On te repond en moins de 2h avec un devis gratuit." />
+            <StepCard n="2" icon="edit" title="On prepare" desc="On adapte ton visuel, tu valides le BAT. Tu choisis ton textile et ta technique (DTF, stickers UV ou broderie)." />
+            <StepCard n="3" icon="box" title="C'est pret" desc="Production express dans notre atelier a Gentilly. Retrait sur place ou livraison." />
+          </div>
         </div>
       </section>
 
