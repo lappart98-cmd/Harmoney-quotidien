@@ -311,9 +311,9 @@ function Step1({
             className="bg-paper rounded-xl p-3.5 flex items-center gap-3.5 mb-2"
           >
             <div
-              className="w-16 h-16 rounded-[10px] bg-[#e5e0d4] flex items-center justify-center shrink-0 text-ink2"
+              className="w-16 h-16 rounded-[10px] bg-[#e5e0d4] flex items-center justify-center shrink-0"
               dangerouslySetInnerHTML={{ __html: p.svg }}
-              style={{ color: "#7a7464" }}
+              style={{ color: p.color }}
             />
             <div className="flex-1 min-w-0">
               <div className="font-display text-[13px] font-bold uppercase text-ink leading-tight mb-0.5">

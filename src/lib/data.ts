@@ -3,6 +3,7 @@ export interface Product {
   name: string;
   price: number;
   svg: string;
+  color: string;
 }
 
 export interface FlocOption {
@@ -38,13 +39,13 @@ const SVG_POLO =
   '<svg viewBox="0 0 48 48" fill="currentColor"><path d="M16 8L8 16l4 4 4-3v21h16V17l4 3 4-4-8-8c0 3.5-3 6-8 6s-8-2.5-8-6z"/><path d="M20 8l4 7 4-7" fill="none" stroke="#f4f0e8" stroke-width="2"/></svg>';
 
 export const PRODUCTS: Product[] = [
-  { id: "tshirt-b", name: "T-Shirt Basique 190G", price: 9, svg: SVG_TSHIRT },
-  { id: "tshirt-o", name: "T-Shirt Oversize 220G", price: 15, svg: SVG_TSHIRT },
-  { id: "sweat", name: "Sweat Col Rond 280G", price: 23, svg: SVG_HOODIE },
-  { id: "hoodie", name: "Hoodie Classic 260G", price: 17, svg: SVG_HOODIE },
-  { id: "tote", name: "Tote Bag", price: 5, svg: SVG_BAG },
-  { id: "casquette", name: "Casquette Snapback", price: 8, svg: SVG_CAP },
-  { id: "polo", name: "Polo 210G", price: 11, svg: SVG_POLO },
+  { id: "tshirt-b", name: "T-Shirt Basique 190G", price: 9, svg: SVG_TSHIRT, color: "#e8e2d0" },
+  { id: "tshirt-o", name: "T-Shirt Oversize 220G", price: 15, svg: SVG_TSHIRT, color: "#2a2722" },
+  { id: "sweat", name: "Sweat Col Rond 280G", price: 23, svg: SVG_HOODIE, color: "#2a2722" },
+  { id: "hoodie", name: "Hoodie Classic 260G", price: 17, svg: SVG_HOODIE, color: "#3a3832" },
+  { id: "tote", name: "Tote Bag", price: 5, svg: SVG_BAG, color: "#2a2722" },
+  { id: "casquette", name: "Casquette Snapback", price: 8, svg: SVG_CAP, color: "#2a2722" },
+  { id: "polo", name: "Polo 210G", price: 11, svg: SVG_POLO, color: "#2a2722" },
 ];
 
 export const MENUS: Record<string, Menu> = {
