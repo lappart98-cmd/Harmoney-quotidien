@@ -1,286 +1,269 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, viewport-fit=cover" />
-<meta name="apple-mobile-web-app-capable" content="yes" />
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-<meta name="theme-color" content="#0a0a0a" />
-<meta name="description" content="L'Appart 98 — Atelier textile personnalisé à Gentilly. DTF, stickers UV, broderie. Compose ton textile comme au comptoir." />
-<meta property="og:title" content="L'Appart 98 — Atelier Textile" />
-<meta property="og:description" content="Compose ton textile personnalisé. DTF, stickers UV, broderie. Sans minimum." />
-<meta property="og:type" content="website" />
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+<meta name="theme-color" content="#0d0c08"/>
+<meta name="description" content="L'Appart 98 — Atelier textile personnalise a Gentilly (94). DTF, stickers UV, broderie. Compose ton textile comme au comptoir, sans minimum."/>
 <title>L'Appart 98 — Atelier Textile Gentilly</title>
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet"/>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 :root{
-  --bg:#0a0a0a;--bg2:#111111;--bg3:#1a1a1a;
-  --lime:#c8ff00;--lime-dim:#a0cc00;--lime-bg:rgba(200,255,0,.08);
-  --olive:#2a2d10;--olive2:#3a3e18;
-  --white:#ffffff;--gray1:#e5e5e5;--gray2:#a3a3a3;--gray3:#737373;--gray4:#404040;--gray5:#262626;
-  --border:#2a2a2a;
-  --font:'Inter',system-ui,-apple-system,sans-serif;
-  --heading:'Space Grotesk','Inter',system-ui,sans-serif;
-  --ease:cubic-bezier(.22,1,.36,1);
-  --maxw:640px;
+  --ground:#0d0c08;--surface:#17150f;--surface-hi:#211f16;
+  --chalk:#e8e2d0;--dim:#7d7768;--faint:#4a4538;
+  --lime:#c8ff00;--lime-soft:rgba(200,255,0,.07);
+  --rule:#2a2720;
+  --display:'Syne','Avenir Next','Segoe UI',system-ui,sans-serif;
+  --body:'DM Sans','Avenir',system-ui,sans-serif;
+  --maxw:620px;--ease:cubic-bezier(.16,1,.3,1);
 }
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
-body{background:var(--bg);color:var(--white);font-family:var(--font);line-height:1.5;
-  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;overflow-x:hidden;}
+body{
+  background:var(--ground);color:var(--chalk);
+  font-family:var(--body);font-size:15px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
 a{color:inherit;text-decoration:none;}
 button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit;}
-img{max-width:100%;display:block;}
-.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0;}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;}}
 
-/* ── NAV ── */
+/* ─── NAV ─── */
 .nav{position:fixed;top:0;left:0;right:0;z-index:100;
-  background:rgba(10,10,10,.85);-webkit-backdrop-filter:blur(16px) saturate(1.8);backdrop-filter:blur(16px) saturate(1.8);
-  border-bottom:1px solid rgba(255,255,255,.06);transition:transform .35s var(--ease);}
-.nav.hidden{transform:translateY(-100%);}
-.nav-inner{max-width:var(--maxw);margin:0 auto;padding:0 20px;height:60px;display:flex;align-items:center;justify-content:space-between;}
-.logo{font-family:var(--heading);font-weight:700;font-size:22px;letter-spacing:-.02em;display:flex;align-items:baseline;gap:2px;}
-.logo .num{font-size:13px;font-weight:600;color:var(--lime);margin-left:1px;}
-.logo-sub{font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--gray3);font-weight:500;margin-left:10px;display:none;}
-@media(min-width:400px){.logo-sub{display:inline;}}
-.nav-links{display:flex;gap:6px;align-items:center;}
-.nav-link{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--gray2);padding:7px 10px;border-radius:8px;transition:all .2s;}
-.nav-link:hover{color:var(--white);background:var(--bg3);}
-.nav-cta{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;
-  background:var(--lime);color:var(--bg);padding:8px 16px;border-radius:10px;transition:all .2s;}
-.nav-cta:hover{background:var(--white);transform:translateY(-1px);}
-.menu-btn{display:flex;flex-direction:column;gap:5px;padding:8px;width:40px;height:40px;justify-content:center;align-items:center;}
-.menu-btn span{display:block;width:22px;height:2px;background:var(--white);border-radius:2px;transition:all .3s var(--ease);}
-.menu-open .menu-btn span:nth-child(1){transform:translateY(3.5px) rotate(45deg);}
-.menu-open .menu-btn span:nth-child(2){transform:translateY(-3.5px) rotate(-45deg);}
-@media(min-width:640px){.menu-btn{display:none;}}
-@media(max-width:639px){.nav-links{display:none;}.menu-open .nav-links{display:flex;flex-direction:column;position:absolute;top:60px;left:0;right:0;background:rgba(10,10,10,.97);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);padding:16px 20px;gap:4px;border-bottom:1px solid var(--border);}}
+  background:rgba(13,12,8,.88);-webkit-backdrop-filter:blur(14px) saturate(1.6);backdrop-filter:blur(14px) saturate(1.6);
+  border-bottom:1px solid var(--rule);}
+.nav-in{max-width:var(--maxw);margin:0 auto;padding:0 20px;height:56px;display:flex;align-items:center;justify-content:space-between;}
+.logo{font-family:var(--display);font-weight:700;font-size:20px;letter-spacing:-.01em;}
+.logo b{color:var(--lime);font-size:14px;font-weight:700;margin-left:1px;vertical-align:baseline;}
+.nav-r{display:flex;align-items:center;gap:6px;}
+.nav-a{font-size:11.5px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--dim);padding:6px 10px;border-radius:8px;transition:color .2s;}
+.nav-a:hover,.nav-a:focus-visible{color:var(--chalk);}
+.nav-cta{font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;
+  background:var(--lime);color:var(--ground);padding:8px 16px;border-radius:8px;transition:background .2s;}
+.nav-cta:hover{background:var(--chalk);}
+.ham{display:none;width:36px;height:36px;flex-direction:column;gap:5px;justify-content:center;align-items:center;padding:6px;}
+.ham span{width:20px;height:1.5px;background:var(--chalk);border-radius:1px;transition:transform .3s var(--ease);}
+@media(max-width:599px){
+  .nav-r{display:none;position:absolute;top:56px;left:0;right:0;flex-direction:column;align-items:stretch;
+    background:rgba(13,12,8,.96);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);padding:12px 20px;gap:2px;border-bottom:1px solid var(--rule);}
+  .nav-r .nav-a,.nav-r .nav-cta{text-align:left;padding:12px 0;border-radius:0;}
+  .nav-r .nav-cta{text-align:center;margin-top:8px;padding:12px;border-radius:8px;}
+  .ham{display:flex;}
+  .nav.open .nav-r{display:flex;}
+  .nav.open .ham span:first-child{transform:translateY(3.25px) rotate(45deg);}
+  .nav.open .ham span:last-child{transform:translateY(-3.25px) rotate(-45deg);}
+}
 
-/* ── HERO ── */
-.hero{padding:100px 20px 48px;text-align:center;position:relative;overflow:hidden;
-  background:radial-gradient(ellipse 80% 50% at 50% 0%,rgba(200,255,0,.04),transparent 70%);}
-.hero::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;
-  background:radial-gradient(circle at 30% 30%,rgba(200,255,0,.03) 0%,transparent 50%),
-  radial-gradient(circle at 70% 70%,rgba(200,255,0,.02) 0%,transparent 50%);
-  animation:heroBg 20s ease infinite alternate;pointer-events:none;}
-@keyframes heroBg{0%{transform:translate(0,0) scale(1);}100%{transform:translate(-5%,5%) scale(1.1);}}
-.badge-wrap{display:inline-flex;margin-bottom:20px;}
-.badge{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;
-  background:rgba(200,255,0,.08);border:1px solid rgba(200,255,0,.15);border-radius:100px;
-  font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--lime);}
-.badge .pulse{width:6px;height:6px;border-radius:50%;background:var(--lime);position:relative;}
-.badge .pulse::after{content:'';position:absolute;inset:-3px;border-radius:50%;background:var(--lime);opacity:.4;animation:pulse 2s ease-out infinite;}
-@keyframes pulse{0%{transform:scale(1);opacity:.4;}100%{transform:scale(2.5);opacity:0;}}
-.hero h1{font-family:var(--heading);font-size:clamp(36px,10vw,56px);font-weight:700;line-height:.95;
-  letter-spacing:-.03em;text-transform:uppercase;margin-bottom:8px;}
-.hero h1 .accent{color:var(--lime);}
-.hero-sub{font-size:clamp(14px,3.5vw,17px);color:var(--gray2);font-weight:500;margin-bottom:28px;max-width:380px;margin-inline:auto;}
-.tech-pills{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:36px;}
-.pill{padding:6px 14px;border:1px solid var(--border);border-radius:100px;font-size:11.5px;font-weight:600;
-  letter-spacing:.1em;text-transform:uppercase;color:var(--gray2);transition:all .25s;}
-.pill:hover{border-color:var(--lime);color:var(--lime);}
+/* ─── HERO ─── */
+.hero{padding:96px 20px 56px;text-align:center;position:relative;}
+.hero::after{content:'';position:absolute;top:56px;left:50%;width:min(600px,100vw);height:400px;
+  transform:translateX(-50%);background:radial-gradient(ellipse at 50% 0%,rgba(200,255,0,.035) 0%,transparent 70%);pointer-events:none;}
+.badge{display:inline-flex;align-items:center;gap:7px;padding:5px 14px;margin-bottom:24px;
+  background:var(--lime-soft);border:1px solid rgba(200,255,0,.12);border-radius:100px;
+  font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--lime);}
+.badge i{width:5px;height:5px;border-radius:50%;background:var(--lime);flex-shrink:0;}
+.hero h1{font-family:var(--display);font-weight:800;font-size:clamp(34px,9.5vw,52px);line-height:.92;
+  letter-spacing:-.03em;text-transform:uppercase;margin-bottom:14px;}
+.hero h1 em{font-style:normal;color:var(--lime);}
+.hero-sub{font-size:11.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin-bottom:8px;}
+.hero-text{font-size:15px;color:var(--dim);max-width:360px;margin:0 auto 32px;line-height:1.55;}
 
 /* Formula */
-.formula{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;margin-bottom:12px;}
-.formula-card{background:var(--bg3);border:1px solid var(--border);border-radius:14px;
-  padding:16px 18px;display:flex;flex-direction:column;align-items:center;gap:8px;min-width:90px;
-  transition:all .3s var(--ease);}
-.formula-card:hover{border-color:rgba(200,255,0,.3);transform:translateY(-2px);}
-.formula-icon{width:40px;height:40px;border-radius:10px;background:var(--olive);
-  display:flex;align-items:center;justify-content:center;font-size:20px;}
-.formula-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--gray1);}
-.formula-plus{font-size:20px;font-weight:700;color:var(--lime);flex-shrink:0;}
-.formula-result{font-family:var(--heading);font-size:clamp(20px,5vw,26px);font-weight:700;
-  text-transform:uppercase;color:var(--lime);margin:8px 0 32px;letter-spacing:-.01em;}
+.formula{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:10px;flex-wrap:wrap;}
+.f-card{background:var(--surface);border:1px solid var(--rule);border-radius:12px;
+  padding:14px 16px;display:flex;flex-direction:column;align-items:center;gap:8px;min-width:88px;
+  transition:border-color .3s,transform .3s var(--ease);}
+.f-card:hover{border-color:rgba(200,255,0,.25);transform:translateY(-2px);}
+.f-icon{width:36px;height:36px;border-radius:9px;background:rgba(200,255,0,.08);
+  display:flex;align-items:center;justify-content:center;color:var(--lime);}
+.f-icon svg{width:18px;height:18px;}
+.f-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--chalk);}
+.f-plus{font-family:var(--display);font-size:18px;font-weight:700;color:var(--lime);flex-shrink:0;}
+.f-result{font-family:var(--display);font-size:clamp(18px,5vw,24px);font-weight:700;
+  text-transform:uppercase;color:var(--lime);margin-bottom:32px;letter-spacing:-.01em;}
 
-/* Hero CTAs */
-.hero-ctas{display:flex;flex-direction:column;gap:10px;align-items:center;max-width:320px;margin:0 auto;}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;
-  padding:14px 28px;border-radius:12px;font-size:14px;font-weight:700;
-  text-transform:uppercase;letter-spacing:.06em;transition:all .25s var(--ease);width:100%;}
-.btn-primary{background:var(--lime);color:var(--bg);}
-.btn-primary:hover{background:var(--white);transform:translateY(-2px);box-shadow:0 8px 30px rgba(200,255,0,.15);}
-.btn-outline{border:1.5px solid var(--lime);color:var(--lime);}
-.btn-outline:hover{background:rgba(200,255,0,.08);transform:translateY(-1px);}
-.btn-ghost{border:1.5px solid var(--gray4);color:var(--gray2);}
-.btn-ghost:hover{border-color:var(--gray3);color:var(--white);transform:translateY(-1px);}
+/* CTAs */
+.ctas{display:flex;flex-direction:column;gap:10px;max-width:300px;margin:0 auto;}
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;
+  padding:13px 24px;border-radius:10px;font-size:13.5px;font-weight:700;
+  text-transform:uppercase;letter-spacing:.06em;transition:all .2s var(--ease);width:100%;}
+.btn:focus-visible{outline:2px solid var(--lime);outline-offset:2px;}
+.btn-p{background:var(--lime);color:var(--ground);}
+.btn-p:hover{background:var(--chalk);transform:translateY(-1px);}
+.btn-o{border:1.5px solid var(--lime);color:var(--lime);}
+.btn-o:hover{background:var(--lime-soft);}
+.btn-g{border:1.5px solid var(--faint);color:var(--dim);}
+.btn-g:hover{border-color:var(--dim);color:var(--chalk);}
 
-/* ── SECTION UTILS ── */
-.section{padding:64px 20px;}
-.section-inner{max-width:var(--maxw);margin:0 auto;}
-.section-kicker{font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gray3);margin-bottom:10px;}
-.section-title{font-family:var(--heading);font-size:clamp(28px,7vw,42px);font-weight:700;
-  line-height:1;text-transform:uppercase;letter-spacing:-.02em;margin-bottom:8px;}
-.section-title .accent{color:var(--lime);}
-.section-desc{font-size:15px;color:var(--gray2);max-width:440px;line-height:1.55;}
+/* ─── MARQUEE ─── */
+.marquee{overflow:hidden;background:var(--lime);padding:12px 0;white-space:nowrap;}
+.m-track{display:inline-flex;animation:m 22s linear infinite;}
+.m-track span{font-family:var(--display);font-size:12.5px;font-weight:700;text-transform:uppercase;
+  letter-spacing:.14em;color:var(--ground);padding:0 20px;display:inline-flex;align-items:center;gap:20px;}
+.m-track span::after{content:'';width:4px;height:4px;border-radius:50%;background:var(--ground);opacity:.35;}
+@keyframes m{to{transform:translateX(-50%);}}
 
-/* ── HOW IT WORKS ── */
-.steps{display:flex;flex-direction:column;gap:16px;margin-top:32px;}
-.step{background:var(--bg3);border:1px solid var(--border);border-radius:16px;padding:28px 24px;position:relative;overflow:hidden;
-  transition:all .3s var(--ease);}
-.step:hover{border-color:rgba(200,255,0,.2);transform:translateY(-2px);}
-.step-num{font-family:var(--heading);font-size:52px;font-weight:700;color:rgba(200,255,0,.1);
-  line-height:1;margin-bottom:8px;letter-spacing:-.03em;}
-.step-icon{width:44px;height:44px;border-radius:11px;background:var(--olive);
-  display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:14px;}
-.step h3{font-family:var(--heading);font-size:17px;font-weight:700;text-transform:uppercase;letter-spacing:.02em;margin-bottom:8px;}
-.step p{font-size:14px;color:var(--gray2);line-height:1.6;}
+/* ─── SECTIONS ─── */
+.sec{padding:72px 20px;}
+.sec-in{max-width:var(--maxw);margin:0 auto;}
+.kicker{font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--faint);margin-bottom:10px;}
+.sec-t{font-family:var(--display);font-size:clamp(26px,7vw,38px);font-weight:700;
+  line-height:.95;text-transform:uppercase;letter-spacing:-.02em;margin-bottom:10px;}
+.sec-t em{font-style:normal;color:var(--lime);}
+.sec-d{font-size:14.5px;color:var(--dim);max-width:400px;line-height:1.55;}
 
-/* ── MARQUEE ── */
-.marquee-wrap{overflow:hidden;background:var(--lime);padding:14px 0;white-space:nowrap;}
-.marquee{display:inline-flex;animation:scroll 18s linear infinite;}
-.marquee span{font-family:var(--heading);font-size:14px;font-weight:700;text-transform:uppercase;
-  letter-spacing:.12em;color:var(--bg);padding:0 24px;display:inline-flex;align-items:center;gap:24px;}
-.marquee span::after{content:'';width:5px;height:5px;border-radius:50%;background:var(--bg);opacity:.4;}
-@keyframes scroll{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+/* ─── STEPS ─── */
+.steps{display:flex;flex-direction:column;gap:12px;margin-top:28px;}
+.step{background:var(--surface);border:1px solid var(--rule);border-radius:14px;padding:24px 22px;
+  transition:border-color .3s,transform .3s var(--ease);}
+.step:hover{border-color:rgba(200,255,0,.15);transform:translateY(-1px);}
+.step-top{display:flex;align-items:center;gap:12px;margin-bottom:14px;}
+.step-n{font-family:var(--display);font-size:12px;font-weight:700;color:var(--faint);
+  width:24px;height:24px;border-radius:6px;border:1px solid var(--rule);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.step-i{width:38px;height:38px;border-radius:9px;background:rgba(200,255,0,.08);
+  display:flex;align-items:center;justify-content:center;color:var(--lime);flex-shrink:0;}
+.step-i svg{width:18px;height:18px;}
+.step h3{font-family:var(--display);font-size:15px;font-weight:700;text-transform:uppercase;letter-spacing:.02em;margin-bottom:6px;}
+.step p{font-size:14px;color:var(--dim);line-height:1.55;}
 
-/* ── MENUS / PRICING ── */
-.menus{background:var(--bg);}
-.menu-cards{display:flex;flex-direction:column;gap:14px;margin-top:32px;}
-.menu-card{background:var(--bg3);border:1px solid var(--border);border-radius:16px;
-  padding:24px;display:flex;align-items:center;justify-content:space-between;gap:16px;
-  transition:all .3s var(--ease);position:relative;overflow:hidden;}
-.menu-card:hover{border-color:rgba(200,255,0,.2);transform:translateY(-2px);}
-.menu-card.featured{border-color:var(--lime);background:linear-gradient(135deg,var(--bg3),rgba(200,255,0,.04));}
-.menu-card.featured::before{content:'LE + COMMANDE';position:absolute;top:12px;right:-28px;
-  background:var(--lime);color:var(--bg);font-size:9px;font-weight:800;letter-spacing:.1em;
-  padding:4px 36px;transform:rotate(30deg);text-transform:uppercase;}
-.menu-info h3{font-family:var(--heading);font-size:18px;font-weight:700;text-transform:uppercase;
-  letter-spacing:.01em;margin-bottom:4px;display:flex;align-items:center;gap:10px;}
-.menu-badge{font-size:10.5px;font-weight:600;padding:3px 10px;border-radius:100px;
-  background:var(--gray5);color:var(--gray2);letter-spacing:.04em;}
-.menu-info p{font-size:13.5px;color:var(--gray3);line-height:1.4;}
-.menu-price{text-align:center;flex-shrink:0;}
-.menu-price .from{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--gray3);}
-.menu-price .amount{font-family:var(--heading);font-size:36px;font-weight:700;color:var(--lime);line-height:1;}
-.menu-price .unit{font-size:11px;font-weight:600;color:var(--gray3);}
-.menu-card.featured .menu-price .amount{font-size:40px;}
-.menu-note{margin-top:16px;background:var(--lime);border-radius:12px;padding:14px 18px;
-  font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;
-  color:var(--bg);text-align:center;line-height:1.4;}
-.menu-footnote{font-size:12px;color:var(--gray3);text-align:center;margin-top:14px;line-height:1.5;}
+/* ─── MENUS ─── */
+.menu-list{display:flex;flex-direction:column;gap:12px;margin-top:28px;}
+.menu-item{background:var(--surface);border:1px solid var(--rule);border-radius:14px;
+  padding:22px;display:flex;align-items:center;justify-content:space-between;gap:16px;
+  transition:border-color .3s,transform .3s var(--ease);}
+.menu-item:hover{border-color:rgba(200,255,0,.2);transform:translateY(-1px);}
+.menu-item.feat{border-color:rgba(200,255,0,.5);position:relative;overflow:hidden;}
+.menu-item.feat::after{content:'Le + commande';position:absolute;top:10px;right:-32px;
+  background:var(--lime);color:var(--ground);font-size:8.5px;font-weight:700;letter-spacing:.08em;
+  padding:3px 38px;transform:rotate(32deg);text-transform:uppercase;pointer-events:none;}
+.mi-info h3{font-family:var(--display);font-size:16px;font-weight:700;text-transform:uppercase;
+  letter-spacing:.01em;margin-bottom:4px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.mi-qty{font-size:10px;font-weight:600;padding:3px 9px;border-radius:100px;
+  background:var(--surface-hi);color:var(--dim);letter-spacing:.04em;font-family:var(--body);}
+.mi-info p{font-size:13px;color:var(--dim);line-height:1.45;}
+.mi-price{text-align:center;flex-shrink:0;min-width:56px;}
+.mi-price .fr{font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--dim);}
+.mi-price .am{font-family:var(--display);font-size:34px;font-weight:700;color:var(--lime);line-height:1;font-variant-numeric:tabular-nums;}
+.mi-price .un{font-size:10.5px;font-weight:500;color:var(--dim);}
+.menu-note{margin-top:16px;background:var(--lime);border-radius:10px;padding:13px 18px;
+  font-family:var(--display);font-size:12.5px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;
+  color:var(--ground);text-align:center;line-height:1.35;}
+.menu-foot{font-size:12px;color:var(--faint);text-align:center;margin-top:12px;line-height:1.5;}
 
-/* ── CTA SECTION ── */
-.cta-section{text-align:center;padding:72px 20px;
-  background:linear-gradient(180deg,var(--bg) 0%,rgba(200,255,0,.03) 50%,var(--bg) 100%);}
-.cta-section .section-title{margin-bottom:14px;}
-.cta-section .section-desc{margin-inline:auto;margin-bottom:32px;}
+/* ─── CTA ─── */
+.cta-sec{text-align:center;padding:72px 20px;position:relative;}
+.cta-sec::before{content:'';position:absolute;bottom:0;left:50%;width:min(600px,100vw);height:400px;
+  transform:translateX(-50%);background:radial-gradient(ellipse at 50% 100%,rgba(200,255,0,.03) 0%,transparent 70%);pointer-events:none;}
+.cta-sec .sec-t{margin-bottom:12px;}
+.cta-sec .sec-d{margin:0 auto 28px;text-align:center;}
 
-/* ── CONTACT ── */
-.contacts{display:flex;flex-direction:column;gap:12px;margin-top:32px;}
-.contact-card{background:var(--bg3);border:1px solid var(--border);border-radius:14px;
-  padding:20px;display:flex;align-items:center;gap:16px;transition:all .25s var(--ease);}
-.contact-card:hover{border-color:rgba(200,255,0,.2);transform:translateY(-1px);}
-.contact-icon{width:48px;height:48px;border-radius:12px;background:var(--olive);flex-shrink:0;
-  display:flex;align-items:center;justify-content:center;font-size:20px;}
-.contact-label{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gray3);}
-.contact-value{font-size:15px;font-weight:600;color:var(--white);margin-top:2px;}
+/* ─── CONTACTS ─── */
+.contacts{display:flex;flex-direction:column;gap:10px;margin-top:32px;max-width:var(--maxw);margin-left:auto;margin-right:auto;}
+.cc{background:var(--surface);border:1px solid var(--rule);border-radius:12px;
+  padding:18px 20px;display:flex;align-items:center;gap:14px;
+  transition:border-color .25s,transform .25s var(--ease);}
+.cc:hover{border-color:rgba(200,255,0,.15);transform:translateY(-1px);}
+.cc-i{width:42px;height:42px;border-radius:10px;background:rgba(200,255,0,.08);flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;color:var(--lime);}
+.cc-i svg{width:18px;height:18px;}
+.cc-l{font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);}
+.cc-v{font-size:14px;font-weight:600;color:var(--chalk);margin-top:1px;}
 
-/* ── FOOTER ── */
-.footer{border-top:1px solid var(--border);padding:32px 20px;text-align:center;}
-.footer-inner{max-width:var(--maxw);margin:0 auto;}
-.footer-logo{font-family:var(--heading);font-weight:700;font-size:18px;margin-bottom:6px;}
-.footer-logo .num{color:var(--lime);font-size:12px;}
-.footer-text{font-size:12px;color:var(--gray3);line-height:1.6;}
+/* ─── FOOTER ─── */
+.foot{border-top:1px solid var(--rule);padding:28px 20px;text-align:center;}
+.foot-in{max-width:var(--maxw);margin:0 auto;}
+.foot-logo{font-family:var(--display);font-weight:700;font-size:16px;margin-bottom:4px;}
+.foot-logo b{color:var(--lime);font-size:12px;}
+.foot p{font-size:11.5px;color:var(--faint);line-height:1.5;}
 
-/* ── ANIMATIONS ── */
-.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s var(--ease),transform .6s var(--ease);}
-.reveal.visible{opacity:1;transform:translateY(0);}
-.reveal-delay-1{transition-delay:.1s;}
-.reveal-delay-2{transition-delay:.2s;}
-.reveal-delay-3{transition-delay:.3s;}
-
-/* ── SCROLL BAR ── */
-::-webkit-scrollbar{width:6px;}
-::-webkit-scrollbar-track{background:var(--bg);}
-::-webkit-scrollbar-thumb{background:var(--gray4);border-radius:3px;}
-::-webkit-scrollbar-thumb:hover{background:var(--gray3);}
+/* ─── REVEAL ─── */
+.rv{opacity:0;transform:translateY(18px);transition:opacity .55s ease,transform .55s var(--ease);}
+.rv.vis{opacity:1;transform:none;}
 </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav class="nav" id="nav">
-  <div class="nav-inner">
-    <a href="#" class="logo">L'APPART<span class="num">98</span><span class="logo-sub">Atelier Textile · Gentilly (94)</span></a>
-    <div class="nav-links" id="nav-links">
-      <a href="#how" class="nav-link" data-nav>Comment</a>
-      <a href="#menus" class="nav-link" data-nav>Menus</a>
-      <a href="#contact" class="nav-link" data-nav>Contact</a>
+  <div class="nav-in">
+    <a href="#" class="logo">L'APPART<b>98</b></a>
+    <div class="nav-r" id="nav-r">
+      <a href="#how" class="nav-a" data-n>Comment</a>
+      <a href="#menus" class="nav-a" data-n>Menus</a>
+      <a href="#contact" class="nav-a" data-n>Contact</a>
       <a href="https://wa.me/33675008633" class="nav-cta" target="_blank" rel="noopener">WhatsApp</a>
     </div>
-    <button class="menu-btn" id="menu-btn" aria-label="Menu">
-      <span></span><span></span>
-    </button>
+    <button class="ham" id="ham" aria-label="Menu"><span></span><span></span></button>
   </div>
 </nav>
 
-<!-- HERO -->
 <section class="hero" id="top">
-  <div class="badge-wrap reveal">
-    <div class="badge"><span class="pulse"></span> Sans minimum de commande</div>
-  </div>
-  <h1 class="reveal reveal-delay-1">Le <span class="accent">menu</span><br>de l'atelier</h1>
-  <p class="hero-sub reveal reveal-delay-2">Compose ton textile personnalise comme au comptoir : choisis ta formule, on s'occupe du reste.</p>
-  <div class="tech-pills reveal reveal-delay-2">
-    <span class="pill">DTF</span>
-    <span class="pill">Stickers UV</span>
-    <span class="pill">Broderie</span>
-  </div>
-  <div class="formula reveal reveal-delay-3">
-    <div class="formula-card">
-      <div class="formula-icon">🎨</div>
-      <div class="formula-label">Ton visuel</div>
+  <div class="badge rv"><i></i> Sans minimum de commande</div>
+  <h1 class="rv">Le <em>menu</em><br>de l'atelier</h1>
+  <p class="hero-sub rv">DTF · Stickers UV · Broderie</p>
+  <p class="hero-text rv">Compose ton textile personnalise comme au comptoir : choisis ta formule, on s'occupe du reste.</p>
+
+  <div class="formula rv">
+    <div class="f-card">
+      <div class="f-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.5 2 2 6.5 2 12a10 10 0 0 0 10 10c.8 0 1.4-.3 1.8-.9.4-.5.4-1.2.2-1.8-.3-.7-.3-1.4 0-2 .4-.8 1.2-1.3 2-1.3h2a4 4 0 0 0 4-4c0-4.4-4.5-8-10-8z"/><circle cx="8" cy="8" r="1.2" fill="currentColor" stroke="none"/><circle cx="14" cy="7" r="1.2" fill="currentColor" stroke="none"/><circle cx="6.5" cy="12.5" r="1.2" fill="currentColor" stroke="none"/></svg></div>
+      <span class="f-label">Ton visuel</span>
     </div>
-    <span class="formula-plus">+</span>
-    <div class="formula-card">
-      <div class="formula-icon">✋</div>
-      <div class="formula-label">La pose</div>
+    <span class="f-plus">+</span>
+    <div class="f-card">
+      <div class="f-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="6" rx="1.5"/><line x1="12" y1="9" x2="12" y2="12"/><rect x="4" y="12" width="16" height="8" rx="1.5"/></svg></div>
+      <span class="f-label">La pose</span>
     </div>
-    <span class="formula-plus">+</span>
-    <div class="formula-card">
-      <div class="formula-icon">👕</div>
-      <div class="formula-label">Le textile</div>
+    <span class="f-plus">+</span>
+    <div class="f-card">
+      <div class="f-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2L2 7l2.5 3L8 7.5V22h8V7.5l3.5 2.5L22 7l-6-5c0 2.2-1.8 4-4 4S8 4.2 8 2z"/></svg></div>
+      <span class="f-label">Le textile</span>
     </div>
   </div>
-  <div class="formula-result reveal">=&nbsp;Ta piece perso</div>
-  <div class="hero-ctas reveal">
-    <a href="#menus" class="btn btn-primary">Voir les menus</a>
-    <a href="https://wa.me/33675008633" class="btn btn-outline" target="_blank" rel="noopener">💬&nbsp; WhatsApp</a>
-    <a href="mailto:contact@lappart98.com" class="btn btn-ghost">✉&nbsp; Email</a>
+  <div class="f-result rv">= Ta piece perso</div>
+
+  <div class="ctas rv">
+    <a href="#menus" class="btn btn-p">Voir les menus</a>
+    <a href="https://wa.me/33675008633" class="btn btn-o" target="_blank" rel="noopener">
+      <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6A8.4 8.4 0 0 1 12 3h.5a8.5 8.5 0 0 1 8 8.5z"/></svg>
+      WhatsApp</a>
+    <a href="mailto:contact@lappart98.com" class="btn btn-g">
+      <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+      Email</a>
   </div>
 </section>
 
-<!-- MARQUEE -->
-<div class="marquee-wrap" aria-hidden="true">
-  <div class="marquee" id="marquee">
-    <span>DTF</span><span>Broderie</span><span>Stickers UV</span><span>T-Shirts</span><span>Sweats</span><span>Casquettes</span><span>Tote bags</span><span>DTF</span><span>Broderie</span><span>Stickers UV</span><span>T-Shirts</span><span>Sweats</span><span>Casquettes</span><span>Tote bags</span>
-  </div>
+<div class="marquee" aria-hidden="true">
+  <div class="m-track"><span>DTF</span><span>Broderie</span><span>Stickers UV</span><span>T-Shirts</span><span>Sweats</span><span>Casquettes</span><span>Tote bags</span><span>DTF</span><span>Broderie</span><span>Stickers UV</span><span>T-Shirts</span><span>Sweats</span><span>Casquettes</span><span>Tote bags</span></div>
 </div>
 
-<!-- HOW IT WORKS -->
-<section class="section" id="how">
-  <div class="section-inner">
-    <div class="section-kicker reveal">Simple comme bonjour</div>
-    <h2 class="section-title reveal">Comment <span class="accent">ca marche</span></h2>
+<section class="sec" id="how">
+  <div class="sec-in">
+    <p class="kicker rv">Simple comme bonjour</p>
+    <h2 class="sec-t rv">Comment <em>ca marche</em></h2>
     <div class="steps">
-      <div class="step reveal">
-        <div class="step-num">01</div>
-        <div class="step-icon">💬</div>
+      <div class="step rv">
+        <div class="step-top">
+          <span class="step-n">1</span>
+          <div class="step-i"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+        </div>
         <h3>Contacte-nous</h3>
         <p>Envoie-nous ton visuel ou ton idee par WhatsApp. On te repond en moins de 2h avec un devis gratuit.</p>
       </div>
-      <div class="step reveal">
-        <div class="step-num">02</div>
-        <div class="step-icon">✏️</div>
+      <div class="step rv">
+        <div class="step-top">
+          <span class="step-n">2</span>
+          <div class="step-i"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.1 2.1 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></div>
+        </div>
         <h3>On prepare</h3>
         <p>On adapte ton visuel, tu valides le BAT. Tu choisis ton textile et ta technique (DTF, stickers UV ou broderie).</p>
       </div>
-      <div class="step reveal">
-        <div class="step-num">03</div>
-        <div class="step-icon">📦</div>
+      <div class="step rv">
+        <div class="step-top">
+          <span class="step-n">3</span>
+          <div class="step-i"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.7l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.7l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="M3.3 7 12 12l8.7-5M12 22V12"/></svg></div>
+        </div>
         <h3>C'est pret</h3>
         <p>Production express dans notre atelier a Gentilly. Retrait sur place ou livraison.</p>
       </div>
@@ -288,136 +271,102 @@ img{max-width:100%;display:block;}
   </div>
 </section>
 
-<!-- MENUS -->
-<section class="section menus" id="menus">
-  <div class="section-inner">
-    <div class="section-kicker reveal">Sers-toi, c'est a la commande</div>
-    <h2 class="section-title reveal">Les <span class="accent">menus</span></h2>
-    <p class="section-desc reveal">Choisis ta formule selon la quantite — clique pour composer ta commande</p>
-    <div class="menu-cards">
-      <a href="https://wa.me/33675008633?text=Salut%20!%20Je%20suis%20int%C3%A9ress%C3%A9%20par%20le%20P'tit%20Solo" class="menu-card reveal" target="_blank" rel="noopener">
-        <div class="menu-info">
-          <h3>Le P'tit Solo <span class="menu-badge">1 a 4</span></h3>
+<section class="sec" id="menus">
+  <div class="sec-in">
+    <p class="kicker rv">Sers-toi, c'est a la commande</p>
+    <h2 class="sec-t rv">Les <em>menus</em></h2>
+    <p class="sec-d rv">Choisis ta formule selon la quantite — clique pour composer ta commande.</p>
+    <div class="menu-list">
+      <a href="https://wa.me/33675008633?text=Salut%20!%20Je%20suis%20int%C3%A9ress%C3%A9%20par%20le%20P'tit%20Solo" class="menu-item rv" target="_blank" rel="noopener">
+        <div class="mi-info">
+          <h3>Le P'tit Solo <span class="mi-qty">1 a 4</span></h3>
           <p>Ta piece perso, flocage + textile au choix</p>
         </div>
-        <div class="menu-price">
-          <div class="from">Des</div>
-          <div class="amount">14</div>
-          <div class="unit">€/piece*</div>
-        </div>
+        <div class="mi-price"><span class="fr">Des</span><span class="am">14</span><span class="un">€/piece*</span></div>
       </a>
-      <a href="https://wa.me/33675008633?text=Salut%20!%20Je%20suis%20int%C3%A9ress%C3%A9%20par%20le%20Menu%20Team" class="menu-card reveal" target="_blank" rel="noopener">
-        <div class="menu-info">
-          <h3>Le Menu Team <span class="menu-badge">5 a 14</span></h3>
+      <a href="https://wa.me/33675008633?text=Salut%20!%20Je%20suis%20int%C3%A9ress%C3%A9%20par%20le%20Menu%20Team" class="menu-item rv" target="_blank" rel="noopener">
+        <div class="mi-info">
+          <h3>Le Menu Team <span class="mi-qty">5 a 14</span></h3>
           <p>Parfait equipes, assos & familles</p>
         </div>
-        <div class="menu-price">
-          <div class="from">Des</div>
-          <div class="amount">12</div>
-          <div class="unit">€/piece*</div>
-        </div>
+        <div class="mi-price"><span class="fr">Des</span><span class="am">12</span><span class="un">€/piece*</span></div>
       </a>
-      <a href="https://wa.me/33675008633?text=Salut%20!%20Je%20suis%20int%C3%A9ress%C3%A9%20par%20le%20Maxi%20Best-Of" class="menu-card featured reveal" target="_blank" rel="noopener">
-        <div class="menu-info">
-          <h3>Le Maxi Best-Of <span class="menu-badge">15 a 40</span></h3>
+      <a href="https://wa.me/33675008633?text=Salut%20!%20Je%20suis%20int%C3%A9ress%C3%A9%20par%20le%20Maxi%20Best-Of" class="menu-item feat rv" target="_blank" rel="noopener">
+        <div class="mi-info">
+          <h3>Le Maxi Best-Of <span class="mi-qty">15 a 40</span></h3>
           <p>Le plus commande — rapport qualite/prix</p>
         </div>
-        <div class="menu-price">
-          <div class="from">Des</div>
-          <div class="amount">11</div>
-          <div class="unit">€/piece*</div>
-        </div>
+        <div class="mi-price"><span class="fr">Des</span><span class="am">11</span><span class="un">€/piece*</span></div>
       </a>
     </div>
-    <div class="menu-note reveal">Chaque menu = ton textile + ton flocage + la pose</div>
-    <p class="menu-footnote reveal">*Prix indicatifs T-Shirt Basique + flocage dos. Tarif selon textile et emplacements.</p>
+    <div class="menu-note rv">Chaque menu = ton textile + ton flocage + la pose</div>
+    <p class="menu-foot rv">*Prix indicatifs T-Shirt Basique + flocage dos. Tarif selon textile et emplacements.</p>
   </div>
 </section>
 
-<!-- CTA -->
-<section class="cta-section" id="contact">
-  <div class="section-inner">
-    <div class="section-kicker reveal">On est la</div>
-    <h2 class="section-title reveal">On <span class="accent">t'attend</span></h2>
-    <p class="section-desc reveal">Passe nous voir a l'atelier ou envoie ton projet par WhatsApp. Devis gratuit, reponse en moins de 2h.</p>
-    <div class="hero-ctas reveal" style="margin:0 auto;">
-      <a href="https://wa.me/33675008633" class="btn btn-primary" target="_blank" rel="noopener">💬&nbsp; Envoyer un message</a>
+<section class="cta-sec" id="contact">
+  <div class="sec-in">
+    <p class="kicker rv">On est la</p>
+    <h2 class="sec-t rv">On <em>t'attend</em></h2>
+    <p class="sec-d rv">Passe nous voir a l'atelier ou envoie ton projet par WhatsApp. Devis gratuit, reponse en moins de 2h.</p>
+    <div class="ctas rv" style="margin:0 auto;">
+      <a href="https://wa.me/33675008633" class="btn btn-p" target="_blank" rel="noopener">
+        <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6A8.4 8.4 0 0 1 12 3h.5a8.5 8.5 0 0 1 8 8.5z"/></svg>
+        Envoyer un message</a>
     </div>
     <div class="contacts">
-      <a href="https://maps.google.com/?q=65+rue+Charles+Frerot+94250+Gentilly" class="contact-card reveal" target="_blank" rel="noopener">
-        <div class="contact-icon">📍</div>
-        <div>
-          <div class="contact-label">Atelier</div>
-          <div class="contact-value">65 rue Charles Frerot, 94250 Gentilly</div>
-        </div>
+      <a href="https://maps.google.com/?q=65+rue+Charles+Frerot+94250+Gentilly" class="cc rv" target="_blank" rel="noopener">
+        <div class="cc-i"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+        <div><span class="cc-l">Atelier</span><span class="cc-v">65 rue Charles Frerot, 94250 Gentilly</span></div>
       </a>
-      <a href="https://wa.me/33675008633" class="contact-card reveal" target="_blank" rel="noopener">
-        <div class="contact-icon">📱</div>
-        <div>
-          <div class="contact-label">WhatsApp</div>
-          <div class="contact-value">06 75 00 86 33</div>
-        </div>
+      <a href="https://wa.me/33675008633" class="cc rv" target="_blank" rel="noopener">
+        <div class="cc-i"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.1 2 2 0 0 1 4.1 2H7a2 2 0 0 1 2 1.7c.1.7.4 1.4.7 2.1a2 2 0 0 1-.5 2.1L8 9.7a16 16 0 0 0 6.3 6.3l1.1-1.1a2 2 0 0 1 2.1-.5c.7.3 1.4.5 2.1.7A2 2 0 0 1 22 16.9z"/></svg></div>
+        <div><span class="cc-l">WhatsApp</span><span class="cc-v">06 75 00 86 33</span></div>
       </a>
-      <a href="https://instagram.com/lappart_98" class="contact-card reveal" target="_blank" rel="noopener">
-        <div class="contact-icon">📸</div>
-        <div>
-          <div class="contact-label">Instagram</div>
-          <div class="contact-value">@lappart_98</div>
-        </div>
+      <a href="https://instagram.com/lappart_98" class="cc rv" target="_blank" rel="noopener">
+        <div class="cc-i"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg></div>
+        <div><span class="cc-l">Instagram</span><span class="cc-v">@lappart_98</span></div>
       </a>
-      <a href="https://www.lappart98.com" class="contact-card reveal" target="_blank" rel="noopener">
-        <div class="contact-icon">🌐</div>
-        <div>
-          <div class="contact-label">Site web</div>
-          <div class="contact-value">www.lappart98.com</div>
-        </div>
+      <a href="https://www.lappart98.com" class="cc rv" target="_blank" rel="noopener">
+        <div class="cc-i"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10A15.3 15.3 0 0 1 12 2z"/></svg></div>
+        <div><span class="cc-l">Site web</span><span class="cc-v">www.lappart98.com</span></div>
       </a>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
-<footer class="footer">
-  <div class="footer-inner">
-    <div class="footer-logo">L'APPART<span class="num">98</span></div>
-    <p class="footer-text">Atelier textile personnalise · Gentilly (94)<br>&copy; 2024 L'Appart 98. Tous droits reserves.</p>
+<footer class="foot">
+  <div class="foot-in">
+    <div class="foot-logo">L'APPART<b>98</b></div>
+    <p>Atelier textile personnalise · Gentilly (94)</p>
   </div>
 </footer>
 
 <script>
 (function(){
   "use strict";
+  var io=new IntersectionObserver(function(e){
+    e.forEach(function(x){if(x.isIntersecting){x.target.classList.add("vis");io.unobserve(x.target);}});
+  },{threshold:.12,rootMargin:"0px 0px -32px 0px"});
+  document.querySelectorAll(".rv").forEach(function(el){io.observe(el);});
 
-  // Reveal on scroll
-  var reveals=document.querySelectorAll('.reveal');
-  var io=new IntersectionObserver(function(entries){
-    entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target);}});
-  },{threshold:0.15,rootMargin:'0px 0px -40px 0px'});
-  reveals.forEach(function(el){io.observe(el);});
-
-  // Nav hide on scroll down, show on scroll up
-  var nav=document.getElementById('nav');
-  var lastY=0,ticking=false;
-  window.addEventListener('scroll',function(){
-    if(!ticking){window.requestAnimationFrame(function(){
-      var y=window.scrollY;
-      if(y>80){nav.classList.toggle('hidden',y>lastY&&y>200);}else{nav.classList.remove('hidden');}
-      lastY=y;ticking=false;
-    });ticking=true;}
+  var nav=document.getElementById("nav"),lastY=0;
+  window.addEventListener("scroll",function(){
+    var y=window.scrollY;
+    if(y>80)nav.style.transform=y>lastY&&y>200?"translateY(-100%)":"";
+    else nav.style.transform="";
+    lastY=y;
   },{passive:true});
+  nav.style.transition="transform .35s cubic-bezier(.16,1,.3,1)";
 
-  // Mobile menu
-  var menuBtn=document.getElementById('menu-btn');
-  menuBtn.addEventListener('click',function(){nav.classList.toggle('menu-open');});
-  document.querySelectorAll('[data-nav]').forEach(function(a){
-    a.addEventListener('click',function(){nav.classList.remove('menu-open');});
+  document.getElementById("ham").addEventListener("click",function(){nav.classList.toggle("open");});
+  document.querySelectorAll("[data-n]").forEach(function(a){
+    a.addEventListener("click",function(){nav.classList.remove("open");});
   });
-
-  // Smooth scroll for anchor links
   document.querySelectorAll('a[href^="#"]').forEach(function(a){
-    a.addEventListener('click',function(e){
-      var t=document.querySelector(this.getAttribute('href'));
-      if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'});}
+    a.addEventListener("click",function(e){
+      var t=document.querySelector(this.getAttribute("href"));
+      if(t){e.preventDefault();t.scrollIntoView({behavior:"smooth",block:"start"});}
     });
   });
 })();
