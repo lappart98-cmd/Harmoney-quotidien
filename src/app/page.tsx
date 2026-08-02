@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import dynamic from "next/dynamic";
 import Configurator from "@/components/configurator";
+import { MetalButton } from "@/components/ui/liquid-glass-button";
 
 const KineticGrid = dynamic(
   () => import("@/components/ui/kinetic-grid"),
@@ -153,9 +154,13 @@ export default function Home() {
 
             <RevealOnScroll>
               <div className="flex flex-col gap-2.5 max-w-[300px] mx-auto">
-                <a href="#menus" className="flex items-center justify-center gap-2 py-3.5 px-6 rounded-[10px] text-[13.5px] font-bold uppercase tracking-[.06em] bg-lime text-bg hover:bg-chalk hover:-translate-y-px transition-all w-full">
+                <MetalButton
+                  variant="lime"
+                  className="w-full text-[13.5px] tracking-[.06em] uppercase"
+                  onClick={() => document.getElementById("menus")?.scrollIntoView({ behavior: "smooth" })}
+                >
                   Voir les menus
-                </a>
+                </MetalButton>
                 <a
                   href="https://wa.me/33675008633"
                   target="_blank"
@@ -289,15 +294,14 @@ export default function Home() {
           </RevealOnScroll>
           <RevealOnScroll>
             <div className="flex flex-col gap-2.5 max-w-[300px] mx-auto mb-8">
-              <a
-                href="https://wa.me/33675008633"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 py-3.5 px-6 rounded-[10px] text-[13.5px] font-bold uppercase tracking-[.06em] bg-lime text-bg hover:bg-chalk hover:-translate-y-px transition-all w-full"
+              <MetalButton
+                variant="lime"
+                className="w-full text-[13.5px] tracking-[.06em] uppercase"
+                onClick={() => window.open("https://wa.me/33675008633", "_blank")}
               >
                 <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6A8.4 8.4 0 0 1 12 3h.5a8.5 8.5 0 0 1 8 8.5z" /></svg>
                 Envoyer un message
-              </a>
+              </MetalButton>
             </div>
           </RevealOnScroll>
 

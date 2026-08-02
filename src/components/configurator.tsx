@@ -2,6 +2,7 @@
 
 import { useState, useCallback } from "react";
 import { PRODUCTS, MENUS, FLOCS, TECHS } from "@/lib/data";
+import { MetalButton } from "@/components/ui/liquid-glass-button";
 
 interface CfgState {
   menu: string | null;
@@ -220,12 +221,15 @@ export default function Configurator({
         {/* Footer */}
         <div className="flex gap-2 px-5 py-3 pb-[calc(12px+env(safe-area-inset-bottom))] border-t border-rule bg-sf">
           {state.step === 0 && (
-            <button
-              onClick={() => setStep(1)}
-              className="flex-1 flex items-center justify-center gap-2 py-3.5 px-6 rounded-[10px] text-[13.5px] font-bold uppercase tracking-wide bg-lime text-bg hover:bg-chalk transition-all"
-            >
-              Suivant &rsaquo;
-            </button>
+            <div className="flex-1">
+              <MetalButton
+                variant="lime"
+                className="w-full text-[13.5px] tracking-wide uppercase"
+                onClick={() => setStep(1)}
+              >
+                Suivant &rsaquo;
+              </MetalButton>
+            </div>
           )}
           {state.step === 1 && (
             <>
@@ -235,12 +239,15 @@ export default function Configurator({
               >
                 Retour
               </button>
-              <button
-                onClick={() => setStep(2)}
-                className="flex-1 flex items-center justify-center gap-2 py-3.5 px-6 rounded-[10px] text-[13.5px] font-bold uppercase tracking-wide bg-lime text-bg hover:bg-chalk transition-all"
-              >
-                Suivant &rsaquo;
-              </button>
+              <div className="flex-1">
+                <MetalButton
+                  variant="lime"
+                  className="w-full text-[13.5px] tracking-wide uppercase"
+                  onClick={() => setStep(2)}
+                >
+                  Suivant &rsaquo;
+                </MetalButton>
+              </div>
             </>
           )}
           {state.step === 2 && (
@@ -251,22 +258,26 @@ export default function Configurator({
               >
                 Retour
               </button>
-              <a
-                href={waLink()}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex-[1.2] flex items-center justify-center gap-2 py-3.5 px-6 rounded-[10px] text-[13.5px] font-bold uppercase tracking-wide bg-lime text-bg hover:bg-chalk transition-all"
-              >
-                <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.6"><path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6A8.4 8.4 0 0 1 12 3h.5a8.5 8.5 0 0 1 8 8.5z" /></svg>
-                WhatsApp
-              </a>
-              <a
-                href={mailLink()}
-                className="flex-1 flex items-center justify-center gap-2 py-3.5 px-6 rounded-[10px] text-[13.5px] font-bold uppercase tracking-wide bg-lime text-bg hover:bg-chalk transition-all"
-              >
-                <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.6"><rect x="2" y="4" width="20" height="16" rx="2" /><path d="m22 7-10 6L2 7" /></svg>
-                Email
-              </a>
+              <div className="flex-[1.2]">
+                <MetalButton
+                  variant="lime"
+                  className="w-full text-[13.5px] tracking-wide uppercase"
+                  onClick={() => window.open(waLink(), "_blank")}
+                >
+                  <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.6"><path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6A8.4 8.4 0 0 1 12 3h.5a8.5 8.5 0 0 1 8 8.5z" /></svg>
+                  WhatsApp
+                </MetalButton>
+              </div>
+              <div className="flex-1">
+                <MetalButton
+                  variant="default"
+                  className="w-full text-[13.5px] tracking-wide uppercase"
+                  onClick={() => window.open(mailLink())}
+                >
+                  <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.6"><rect x="2" y="4" width="20" height="16" rx="2" /><path d="m22 7-10 6L2 7" /></svg>
+                  Email
+                </MetalButton>
+              </div>
             </>
           )}
         </div>

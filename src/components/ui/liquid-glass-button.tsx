@@ -182,7 +182,8 @@ type ColorVariant =
   | "success"
   | "error"
   | "gold"
-  | "bronze";
+  | "bronze"
+  | "lime";
 
 interface MetalButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -240,6 +241,13 @@ const colorVariants: Record<
     button: "bg-gradient-to-b from-[#FFE3C9] to-[#A36F3D]",
     textColor: "text-[#FFF7F0]",
     textShadow: "[text-shadow:_0_-1px_0_rgb(124_45_18_/_100%)]",
+  },
+  lime: {
+    outer: "bg-gradient-to-b from-[#2a3300] to-[#a0cc00]",
+    inner: "bg-gradient-to-b from-[#e8ff66] via-[#3d4d00] to-[#d4f200]",
+    button: "bg-gradient-to-b from-[#c8ff00] to-[#7a9b00]",
+    textColor: "text-[#0d0c08]",
+    textShadow: "[text-shadow:_0_1px_0_rgb(200_255_0_/_25%)]",
   },
 };
 
