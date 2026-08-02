@@ -4,184 +4,205 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
 <meta name="theme-color" content="#0d0c08"/>
-<meta name="description" content="L'Appart 98 — Atelier textile personnalise a Gentilly (94). DTF, stickers UV, broderie. Compose ton textile comme au comptoir, sans minimum."/>
+<meta name="description" content="L'Appart 98 — Atelier textile personnalise a Gentilly (94). DTF, stickers UV, broderie. Sans minimum."/>
 <title>L'Appart 98 — Atelier Textile Gentilly</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Syne:wght@600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 :root{
-  --ground:#0d0c08;--surface:#17150f;--surface-hi:#211f16;
+  --bg:#0d0c08;--sf:#17150f;--sf2:#211f16;
   --chalk:#e8e2d0;--dim:#7d7768;--faint:#4a4538;
-  --lime:#c8ff00;--lime-soft:rgba(200,255,0,.07);
+  --lime:#c8ff00;--lime-s:rgba(200,255,0,.07);
   --rule:#2a2720;
-  --display:'Syne','Avenir Next','Segoe UI',system-ui,sans-serif;
-  --body:'DM Sans','Avenir',system-ui,sans-serif;
+  --dsp:'Syne','Avenir Next',system-ui,sans-serif;
+  --body:'DM Sans',system-ui,sans-serif;
+  --mono:'DM Mono','Courier New',monospace;
   --maxw:620px;--ease:cubic-bezier(.16,1,.3,1);
+  --paper:#f4f0e8;--ink:#2a2722;--ink2:#7a7464;
 }
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
-body{
-  background:var(--ground);color:var(--chalk);
-  font-family:var(--body);font-size:15px;line-height:1.6;
-  -webkit-font-smoothing:antialiased;overflow-x:hidden;
-}
+body{background:var(--bg);color:var(--chalk);font-family:var(--body);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
 a{color:inherit;text-decoration:none;}
 button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit;}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;}}
 
-/* ─── NAV ─── */
-.nav{position:fixed;top:0;left:0;right:0;z-index:100;
-  background:rgba(13,12,8,.88);-webkit-backdrop-filter:blur(14px) saturate(1.6);backdrop-filter:blur(14px) saturate(1.6);
-  border-bottom:1px solid var(--rule);}
+/* ═══ NAV ═══ */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(13,12,8,.88);-webkit-backdrop-filter:blur(14px) saturate(1.6);backdrop-filter:blur(14px) saturate(1.6);border-bottom:1px solid var(--rule);transition:transform .35s var(--ease);}
 .nav-in{max-width:var(--maxw);margin:0 auto;padding:0 20px;height:56px;display:flex;align-items:center;justify-content:space-between;}
-.logo{font-family:var(--display);font-weight:700;font-size:20px;letter-spacing:-.01em;}
-.logo b{color:var(--lime);font-size:14px;font-weight:700;margin-left:1px;vertical-align:baseline;}
+.logo{font-family:var(--dsp);font-weight:700;font-size:20px;letter-spacing:-.01em;}
+.logo b{color:var(--lime);font-size:14px;margin-left:1px;}
 .nav-r{display:flex;align-items:center;gap:6px;}
 .nav-a{font-size:11.5px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--dim);padding:6px 10px;border-radius:8px;transition:color .2s;}
-.nav-a:hover,.nav-a:focus-visible{color:var(--chalk);}
-.nav-cta{font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;
-  background:var(--lime);color:var(--ground);padding:8px 16px;border-radius:8px;transition:background .2s;}
+.nav-a:hover{color:var(--chalk);}
+.nav-cta{font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;background:var(--lime);color:var(--bg);padding:8px 16px;border-radius:8px;transition:background .2s;}
 .nav-cta:hover{background:var(--chalk);}
-.ham{display:none;width:36px;height:36px;flex-direction:column;gap:5px;justify-content:center;align-items:center;padding:6px;}
+.ham{display:none;width:36px;height:36px;flex-direction:column;gap:5px;justify-content:center;align-items:center;}
 .ham span{width:20px;height:1.5px;background:var(--chalk);border-radius:1px;transition:transform .3s var(--ease);}
-@media(max-width:599px){
-  .nav-r{display:none;position:absolute;top:56px;left:0;right:0;flex-direction:column;align-items:stretch;
-    background:rgba(13,12,8,.96);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);padding:12px 20px;gap:2px;border-bottom:1px solid var(--rule);}
-  .nav-r .nav-a,.nav-r .nav-cta{text-align:left;padding:12px 0;border-radius:0;}
-  .nav-r .nav-cta{text-align:center;margin-top:8px;padding:12px;border-radius:8px;}
-  .ham{display:flex;}
-  .nav.open .nav-r{display:flex;}
-  .nav.open .ham span:first-child{transform:translateY(3.25px) rotate(45deg);}
-  .nav.open .ham span:last-child{transform:translateY(-3.25px) rotate(-45deg);}
-}
+@media(max-width:599px){.nav-r{display:none;position:absolute;top:56px;left:0;right:0;flex-direction:column;background:rgba(13,12,8,.96);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);padding:12px 20px;gap:2px;border-bottom:1px solid var(--rule);}.nav-r .nav-a{padding:12px 0;}.nav-r .nav-cta{text-align:center;margin-top:8px;padding:12px;border-radius:8px;}.ham{display:flex;}.nav.open .nav-r{display:flex;}.nav.open .ham span:first-child{transform:translateY(3.25px) rotate(45deg);}.nav.open .ham span:last-child{transform:translateY(-3.25px) rotate(-45deg);}}
 
-/* ─── HERO ─── */
+/* ═══ HERO ═══ */
 .hero{padding:96px 20px 56px;text-align:center;position:relative;}
-.hero::after{content:'';position:absolute;top:56px;left:50%;width:min(600px,100vw);height:400px;
-  transform:translateX(-50%);background:radial-gradient(ellipse at 50% 0%,rgba(200,255,0,.035) 0%,transparent 70%);pointer-events:none;}
-.badge{display:inline-flex;align-items:center;gap:7px;padding:5px 14px;margin-bottom:24px;
-  background:var(--lime-soft);border:1px solid rgba(200,255,0,.12);border-radius:100px;
-  font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--lime);}
-.badge i{width:5px;height:5px;border-radius:50%;background:var(--lime);flex-shrink:0;}
-.hero h1{font-family:var(--display);font-weight:800;font-size:clamp(34px,9.5vw,52px);line-height:.92;
-  letter-spacing:-.03em;text-transform:uppercase;margin-bottom:14px;}
+.hero::after{content:'';position:absolute;top:56px;left:50%;width:min(600px,100vw);height:400px;transform:translateX(-50%);background:radial-gradient(ellipse at 50% 0%,rgba(200,255,0,.035),transparent 70%);pointer-events:none;}
+.badge{display:inline-flex;align-items:center;gap:7px;padding:5px 14px;margin-bottom:24px;background:var(--lime-s);border:1px solid rgba(200,255,0,.12);border-radius:100px;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--lime);}
+.badge i{width:5px;height:5px;border-radius:50%;background:var(--lime);}
+.hero h1{font-family:var(--dsp);font-weight:800;font-size:clamp(34px,9.5vw,52px);line-height:.92;letter-spacing:-.03em;text-transform:uppercase;margin-bottom:14px;}
 .hero h1 em{font-style:normal;color:var(--lime);}
 .hero-sub{font-size:11.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin-bottom:8px;}
 .hero-text{font-size:15px;color:var(--dim);max-width:360px;margin:0 auto 32px;line-height:1.55;}
-
-/* Formula */
 .formula{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:10px;flex-wrap:wrap;}
-.f-card{background:var(--surface);border:1px solid var(--rule);border-radius:12px;
-  padding:14px 16px;display:flex;flex-direction:column;align-items:center;gap:8px;min-width:88px;
-  transition:border-color .3s,transform .3s var(--ease);}
+.f-card{background:var(--sf);border:1px solid var(--rule);border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;align-items:center;gap:8px;min-width:88px;transition:border-color .3s,transform .3s var(--ease);}
 .f-card:hover{border-color:rgba(200,255,0,.25);transform:translateY(-2px);}
-.f-icon{width:36px;height:36px;border-radius:9px;background:rgba(200,255,0,.08);
-  display:flex;align-items:center;justify-content:center;color:var(--lime);}
+.f-icon{width:36px;height:36px;border-radius:9px;background:rgba(200,255,0,.08);display:flex;align-items:center;justify-content:center;color:var(--lime);}
 .f-icon svg{width:18px;height:18px;}
-.f-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--chalk);}
-.f-plus{font-family:var(--display);font-size:18px;font-weight:700;color:var(--lime);flex-shrink:0;}
-.f-result{font-family:var(--display);font-size:clamp(18px,5vw,24px);font-weight:700;
-  text-transform:uppercase;color:var(--lime);margin-bottom:32px;letter-spacing:-.01em;}
-
-/* CTAs */
+.f-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;}
+.f-plus{font-family:var(--dsp);font-size:18px;font-weight:700;color:var(--lime);}
+.f-result{font-family:var(--dsp);font-size:clamp(18px,5vw,24px);font-weight:700;text-transform:uppercase;color:var(--lime);margin-bottom:32px;}
 .ctas{display:flex;flex-direction:column;gap:10px;max-width:300px;margin:0 auto;}
-.btn{display:flex;align-items:center;justify-content:center;gap:8px;
-  padding:13px 24px;border-radius:10px;font-size:13.5px;font-weight:700;
-  text-transform:uppercase;letter-spacing:.06em;transition:all .2s var(--ease);width:100%;}
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;padding:13px 24px;border-radius:10px;font-size:13.5px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;transition:all .2s var(--ease);width:100%;}
 .btn:focus-visible{outline:2px solid var(--lime);outline-offset:2px;}
-.btn-p{background:var(--lime);color:var(--ground);}
+.btn-p{background:var(--lime);color:var(--bg);}
 .btn-p:hover{background:var(--chalk);transform:translateY(-1px);}
 .btn-o{border:1.5px solid var(--lime);color:var(--lime);}
-.btn-o:hover{background:var(--lime-soft);}
+.btn-o:hover{background:var(--lime-s);}
 .btn-g{border:1.5px solid var(--faint);color:var(--dim);}
 .btn-g:hover{border-color:var(--dim);color:var(--chalk);}
 
-/* ─── MARQUEE ─── */
+/* ═══ MARQUEE ═══ */
 .marquee{overflow:hidden;background:var(--lime);padding:12px 0;white-space:nowrap;}
-.m-track{display:inline-flex;animation:m 22s linear infinite;}
-.m-track span{font-family:var(--display);font-size:12.5px;font-weight:700;text-transform:uppercase;
-  letter-spacing:.14em;color:var(--ground);padding:0 20px;display:inline-flex;align-items:center;gap:20px;}
-.m-track span::after{content:'';width:4px;height:4px;border-radius:50%;background:var(--ground);opacity:.35;}
-@keyframes m{to{transform:translateX(-50%);}}
+.m-tk{display:inline-flex;animation:mq 22s linear infinite;}
+.m-tk span{font-family:var(--dsp);font-size:12.5px;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:var(--bg);padding:0 20px;display:inline-flex;align-items:center;gap:20px;}
+.m-tk span::after{content:'';width:4px;height:4px;border-radius:50%;background:var(--bg);opacity:.35;}
+@keyframes mq{to{transform:translateX(-50%);}}
 
-/* ─── SECTIONS ─── */
-.sec{padding:72px 20px;}
-.sec-in{max-width:var(--maxw);margin:0 auto;}
+/* ═══ SECTIONS ═══ */
+.sec{padding:72px 20px;}.sec-in{max-width:var(--maxw);margin:0 auto;}
 .kicker{font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--faint);margin-bottom:10px;}
-.sec-t{font-family:var(--display);font-size:clamp(26px,7vw,38px);font-weight:700;
-  line-height:.95;text-transform:uppercase;letter-spacing:-.02em;margin-bottom:10px;}
+.sec-t{font-family:var(--dsp);font-size:clamp(26px,7vw,38px);font-weight:700;line-height:.95;text-transform:uppercase;letter-spacing:-.02em;margin-bottom:10px;}
 .sec-t em{font-style:normal;color:var(--lime);}
 .sec-d{font-size:14.5px;color:var(--dim);max-width:400px;line-height:1.55;}
 
-/* ─── STEPS ─── */
+/* ═══ STEPS ═══ */
 .steps{display:flex;flex-direction:column;gap:12px;margin-top:28px;}
-.step{background:var(--surface);border:1px solid var(--rule);border-radius:14px;padding:24px 22px;
-  transition:border-color .3s,transform .3s var(--ease);}
+.step{background:var(--sf);border:1px solid var(--rule);border-radius:14px;padding:24px 22px;transition:border-color .3s,transform .3s var(--ease);}
 .step:hover{border-color:rgba(200,255,0,.15);transform:translateY(-1px);}
 .step-top{display:flex;align-items:center;gap:12px;margin-bottom:14px;}
-.step-n{font-family:var(--display);font-size:12px;font-weight:700;color:var(--faint);
-  width:24px;height:24px;border-radius:6px;border:1px solid var(--rule);
-  display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-.step-i{width:38px;height:38px;border-radius:9px;background:rgba(200,255,0,.08);
-  display:flex;align-items:center;justify-content:center;color:var(--lime);flex-shrink:0;}
+.step-n{font-family:var(--dsp);font-size:12px;font-weight:700;color:var(--faint);width:24px;height:24px;border-radius:6px;border:1px solid var(--rule);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.step-i{width:38px;height:38px;border-radius:9px;background:rgba(200,255,0,.08);display:flex;align-items:center;justify-content:center;color:var(--lime);flex-shrink:0;}
 .step-i svg{width:18px;height:18px;}
-.step h3{font-family:var(--display);font-size:15px;font-weight:700;text-transform:uppercase;letter-spacing:.02em;margin-bottom:6px;}
+.step h3{font-family:var(--dsp);font-size:15px;font-weight:700;text-transform:uppercase;letter-spacing:.02em;margin-bottom:6px;}
 .step p{font-size:14px;color:var(--dim);line-height:1.55;}
 
-/* ─── MENUS ─── */
+/* ═══ MENUS ═══ */
 .menu-list{display:flex;flex-direction:column;gap:12px;margin-top:28px;}
-.menu-item{background:var(--surface);border:1px solid var(--rule);border-radius:14px;
-  padding:22px;display:flex;align-items:center;justify-content:space-between;gap:16px;
-  transition:border-color .3s,transform .3s var(--ease);}
+.menu-item{background:var(--sf);border:1px solid var(--rule);border-radius:14px;padding:22px;display:flex;align-items:center;justify-content:space-between;gap:16px;transition:border-color .3s,transform .3s var(--ease);cursor:pointer;}
 .menu-item:hover{border-color:rgba(200,255,0,.2);transform:translateY(-1px);}
 .menu-item.feat{border-color:rgba(200,255,0,.5);position:relative;overflow:hidden;}
-.menu-item.feat::after{content:'Le + commande';position:absolute;top:10px;right:-32px;
-  background:var(--lime);color:var(--ground);font-size:8.5px;font-weight:700;letter-spacing:.08em;
-  padding:3px 38px;transform:rotate(32deg);text-transform:uppercase;pointer-events:none;}
-.mi-info h3{font-family:var(--display);font-size:16px;font-weight:700;text-transform:uppercase;
-  letter-spacing:.01em;margin-bottom:4px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
-.mi-qty{font-size:10px;font-weight:600;padding:3px 9px;border-radius:100px;
-  background:var(--surface-hi);color:var(--dim);letter-spacing:.04em;font-family:var(--body);}
+.menu-item.feat::after{content:'Le + commande';position:absolute;top:10px;right:-32px;background:var(--lime);color:var(--bg);font-size:8.5px;font-weight:700;letter-spacing:.08em;padding:3px 38px;transform:rotate(32deg);text-transform:uppercase;pointer-events:none;}
+.mi-info h3{font-family:var(--dsp);font-size:16px;font-weight:700;text-transform:uppercase;letter-spacing:.01em;margin-bottom:4px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.mi-qty{font-size:10px;font-weight:600;padding:3px 9px;border-radius:100px;background:var(--sf2);color:var(--dim);letter-spacing:.04em;font-family:var(--body);}
 .mi-info p{font-size:13px;color:var(--dim);line-height:1.45;}
 .mi-price{text-align:center;flex-shrink:0;min-width:56px;}
 .mi-price .fr{font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--dim);}
-.mi-price .am{font-family:var(--display);font-size:34px;font-weight:700;color:var(--lime);line-height:1;font-variant-numeric:tabular-nums;}
+.mi-price .am{font-family:var(--dsp);font-size:34px;font-weight:700;color:var(--lime);line-height:1;font-variant-numeric:tabular-nums;}
 .mi-price .un{font-size:10.5px;font-weight:500;color:var(--dim);}
-.menu-note{margin-top:16px;background:var(--lime);border-radius:10px;padding:13px 18px;
-  font-family:var(--display);font-size:12.5px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;
-  color:var(--ground);text-align:center;line-height:1.35;}
+.menu-note{margin-top:16px;background:var(--lime);border-radius:10px;padding:13px 18px;font-family:var(--dsp);font-size:12.5px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--bg);text-align:center;line-height:1.35;}
 .menu-foot{font-size:12px;color:var(--faint);text-align:center;margin-top:12px;line-height:1.5;}
 
-/* ─── CTA ─── */
+/* ═══ CTA+CONTACT ═══ */
 .cta-sec{text-align:center;padding:72px 20px;position:relative;}
-.cta-sec::before{content:'';position:absolute;bottom:0;left:50%;width:min(600px,100vw);height:400px;
-  transform:translateX(-50%);background:radial-gradient(ellipse at 50% 100%,rgba(200,255,0,.03) 0%,transparent 70%);pointer-events:none;}
-.cta-sec .sec-t{margin-bottom:12px;}
-.cta-sec .sec-d{margin:0 auto 28px;text-align:center;}
-
-/* ─── CONTACTS ─── */
+.cta-sec::before{content:'';position:absolute;bottom:0;left:50%;width:min(600px,100vw);height:400px;transform:translateX(-50%);background:radial-gradient(ellipse at 50% 100%,rgba(200,255,0,.03),transparent 70%);pointer-events:none;}
+.cta-sec .sec-t{margin-bottom:12px;}.cta-sec .sec-d{margin:0 auto 28px;text-align:center;}
 .contacts{display:flex;flex-direction:column;gap:10px;margin-top:32px;max-width:var(--maxw);margin-left:auto;margin-right:auto;}
-.cc{background:var(--surface);border:1px solid var(--rule);border-radius:12px;
-  padding:18px 20px;display:flex;align-items:center;gap:14px;
-  transition:border-color .25s,transform .25s var(--ease);}
+.cc{background:var(--sf);border:1px solid var(--rule);border-radius:12px;padding:18px 20px;display:flex;align-items:center;gap:14px;transition:border-color .25s,transform .25s var(--ease);}
 .cc:hover{border-color:rgba(200,255,0,.15);transform:translateY(-1px);}
-.cc-i{width:42px;height:42px;border-radius:10px;background:rgba(200,255,0,.08);flex-shrink:0;
-  display:flex;align-items:center;justify-content:center;color:var(--lime);}
+.cc-i{width:42px;height:42px;border-radius:10px;background:rgba(200,255,0,.08);flex-shrink:0;display:flex;align-items:center;justify-content:center;color:var(--lime);}
 .cc-i svg{width:18px;height:18px;}
 .cc-l{font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);}
-.cc-v{font-size:14px;font-weight:600;color:var(--chalk);margin-top:1px;}
-
-/* ─── FOOTER ─── */
+.cc-v{font-size:14px;font-weight:600;margin-top:1px;}
 .foot{border-top:1px solid var(--rule);padding:28px 20px;text-align:center;}
 .foot-in{max-width:var(--maxw);margin:0 auto;}
-.foot-logo{font-family:var(--display);font-weight:700;font-size:16px;margin-bottom:4px;}
-.foot-logo b{color:var(--lime);font-size:12px;}
+.foot-logo{font-family:var(--dsp);font-weight:700;font-size:16px;margin-bottom:4px;}.foot-logo b{color:var(--lime);font-size:12px;}
 .foot p{font-size:11.5px;color:var(--faint);line-height:1.5;}
 
-/* ─── REVEAL ─── */
-.rv{opacity:0;transform:translateY(18px);transition:opacity .55s ease,transform .55s var(--ease);}
-.rv.vis{opacity:1;transform:none;}
+/* ═══ CONFIGURATEUR ═══ */
+.cfg-ov{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.5);display:none;flex-direction:column;}
+.cfg-ov.open{display:flex;}
+.cfg{margin-top:56px;flex:1;background:var(--sf);border-radius:18px 18px 0 0;display:flex;flex-direction:column;overflow:hidden;animation:cfgUp .4s var(--ease);}
+@keyframes cfgUp{from{transform:translateY(40%);opacity:0;}to{transform:none;opacity:1;}}
+.cfg-hd{padding:20px 20px 0;display:flex;justify-content:space-between;align-items:flex-start;}
+.cfg-hd h2{font-family:var(--dsp);font-size:20px;font-weight:700;text-transform:uppercase;letter-spacing:.01em;}
+.cfg-hd p{font-size:13px;color:var(--dim);margin-top:2px;}
+.cfg-x{width:40px;height:40px;border-radius:50%;background:var(--sf2);display:flex;align-items:center;justify-content:center;font-size:20px;color:var(--dim);flex-shrink:0;transition:background .2s;}
+.cfg-x:hover{background:var(--faint);}
+.cfg-tabs{display:flex;padding:16px 20px 0;gap:4px;}
+.cfg-tab{flex:1;padding:10px 6px;text-align:center;border-radius:8px;font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;background:var(--sf2);color:var(--dim);transition:all .2s;}
+.cfg-tab.on{background:var(--lime);color:var(--bg);}
+.cfg-bd{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:16px 20px 20px;}
+.cfg-ft{padding:12px 20px;padding-bottom:calc(12px + env(safe-area-inset-bottom));display:flex;gap:8px;border-top:1px solid var(--rule);background:var(--sf);}
+.cfg-ft .btn{flex:1;}
+
+/* Products */
+.cfg-lbl{font-size:13px;color:var(--dim);margin-bottom:14px;}
+.prod{background:var(--paper);border-radius:12px;padding:14px;display:flex;align-items:center;gap:14px;margin-bottom:8px;}
+.prod-img{width:64px;height:64px;border-radius:10px;background:#e5e0d4;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--ink2);}
+.prod-img svg{width:32px;height:32px;}
+.prod-info{flex:1;min-width:0;}
+.prod-name{font-family:var(--dsp);font-size:13px;font-weight:700;text-transform:uppercase;color:var(--ink);line-height:1.2;margin-bottom:2px;}
+.prod-pr{font-size:12.5px;color:var(--ink2);}
+.qty{display:flex;align-items:center;gap:2px;flex-shrink:0;}
+.qty button{width:34px;height:34px;border-radius:8px;background:#ddd8cc;border:none;font-size:18px;color:var(--ink);display:flex;align-items:center;justify-content:center;transition:background .15s;}
+.qty button:active{background:#ccc7bb;}
+.qty span{width:30px;text-align:center;font-family:var(--dsp);font-weight:700;font-size:15px;color:var(--ink);font-variant-numeric:tabular-nums;}
+
+/* Flocage */
+.floc{background:var(--sf);border:1.5px solid var(--rule);border-radius:12px;padding:16px 18px;display:flex;align-items:center;gap:12px;margin-bottom:8px;cursor:pointer;transition:border-color .2s,background .2s;}
+.floc.on{border-color:var(--lime);background:rgba(200,255,0,.05);}
+.floc-ck{width:28px;height:28px;border-radius:8px;border:2px solid var(--faint);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s;}
+.floc.on .floc-ck{background:var(--lime);border-color:var(--lime);color:var(--bg);}
+.floc-ck svg{width:14px;height:14px;opacity:0;}.floc.on .floc-ck svg{opacity:1;}
+.floc-t{flex:1;font-family:var(--dsp);font-size:14px;font-weight:700;text-transform:uppercase;}
+.floc-p{font-size:13px;color:var(--dim);font-weight:600;}
+.floc-logos{display:flex;align-items:center;gap:10px;margin-top:4px;}
+
+/* Technique */
+.tec{background:var(--sf);border:1.5px solid var(--rule);border-radius:12px;padding:16px 18px;margin-bottom:8px;cursor:pointer;transition:border-color .2s,background .2s;}
+.tec.on{border-color:var(--lime);background:rgba(200,255,0,.05);}
+.tec-top{display:flex;align-items:center;gap:8px;margin-bottom:4px;}
+.tec-name{font-family:var(--dsp);font-size:14px;font-weight:700;text-transform:uppercase;}
+.tec-badge{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:3px 8px;border-radius:4px;background:var(--lime);color:var(--bg);}
+.tec-badge.dim{background:var(--sf2);color:var(--dim);}
+.tec-ck{margin-left:auto;width:24px;height:24px;border-radius:50%;border:2px solid var(--faint);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s;}
+.tec.on .tec-ck{background:var(--lime);border-color:var(--lime);color:var(--bg);}
+.tec-desc{font-size:13px;color:var(--dim);line-height:1.4;}
+.cfg-calc{text-align:right;font-size:12.5px;color:var(--dim);margin-top:8px;font-variant-numeric:tabular-nums;}
+.cfg-sec-t{font-family:var(--dsp);font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--dim);margin:20px 0 10px;}
+
+/* Receipt */
+.rcpt-wrap{position:relative;margin:0 -20px;padding:16px 0;}
+.rcpt{background:var(--paper);padding:28px 22px;position:relative;color:var(--ink);font-family:var(--mono);font-size:12.5px;line-height:1.6;}
+.rcpt::before,.rcpt::after{content:'';display:block;height:14px;position:absolute;left:0;right:0;background-size:14px 14px;background-repeat:repeat-x;}
+.rcpt::before{top:-14px;background-image:linear-gradient(135deg,var(--paper) 33.33%,transparent 33.33%),linear-gradient(225deg,var(--paper) 33.33%,transparent 33.33%);}
+.rcpt::after{bottom:-14px;background-image:linear-gradient(315deg,var(--paper) 33.33%,transparent 33.33%),linear-gradient(45deg,var(--paper) 33.33%,transparent 33.33%);}
+.rcpt-head{text-align:center;margin-bottom:12px;}
+.rcpt-head h3{font-family:var(--dsp);font-size:20px;font-weight:700;text-transform:uppercase;letter-spacing:.02em;}
+.rcpt-head p{font-size:11.5px;color:var(--ink2);line-height:1.5;}
+.rcpt-dash{border:none;border-top:1.5px dashed #cdc5b4;margin:12px 0;}
+.rcpt-line{display:flex;justify-content:space-between;align-items:baseline;gap:8px;padding:2px 0;}
+.rcpt-line.head{color:var(--ink2);font-size:11px;text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px;}
+.rcpt-line b{font-weight:700;}
+.rcpt-solid{border:none;border-top:1.5px solid #cdc5b4;margin:12px 0;}
+.rcpt-total{display:flex;justify-content:space-between;align-items:baseline;padding:4px 0;}
+.rcpt-total span:first-child{font-family:var(--dsp);font-size:16px;font-weight:700;text-transform:uppercase;}
+.rcpt-total span:last-child{font-family:var(--dsp);font-size:28px;font-weight:700;}
+.rcpt-note{font-size:11px;color:var(--ink2);text-align:center;line-height:1.5;margin-top:8px;}
+.rcpt-merci{font-family:var(--dsp);font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;text-align:center;margin:8px 0;color:var(--ink);}
+.rcpt-cta{font-size:12px;color:var(--ink2);text-align:center;line-height:1.5;}
+.rcpt-cta a{color:var(--lime);font-weight:600;}
+
+/* ═══ REVEAL ═══ */
+.rv{opacity:0;transform:translateY(18px);transition:opacity .55s ease,transform .55s var(--ease);}.rv.vis{opacity:1;transform:none;}
 </style>
 </head>
 <body>
@@ -204,171 +225,272 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
   <h1 class="rv">Le <em>menu</em><br>de l'atelier</h1>
   <p class="hero-sub rv">DTF · Stickers UV · Broderie</p>
   <p class="hero-text rv">Compose ton textile personnalise comme au comptoir : choisis ta formule, on s'occupe du reste.</p>
-
   <div class="formula rv">
-    <div class="f-card">
-      <div class="f-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.5 2 2 6.5 2 12a10 10 0 0 0 10 10c.8 0 1.4-.3 1.8-.9.4-.5.4-1.2.2-1.8-.3-.7-.3-1.4 0-2 .4-.8 1.2-1.3 2-1.3h2a4 4 0 0 0 4-4c0-4.4-4.5-8-10-8z"/><circle cx="8" cy="8" r="1.2" fill="currentColor" stroke="none"/><circle cx="14" cy="7" r="1.2" fill="currentColor" stroke="none"/><circle cx="6.5" cy="12.5" r="1.2" fill="currentColor" stroke="none"/></svg></div>
-      <span class="f-label">Ton visuel</span>
-    </div>
+    <div class="f-card"><div class="f-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.5 2 2 6.5 2 12a10 10 0 0 0 10 10c.8 0 1.4-.3 1.8-.9.4-.5.4-1.2.2-1.8-.3-.7-.3-1.4 0-2 .4-.8 1.2-1.3 2-1.3h2a4 4 0 0 0 4-4c0-4.4-4.5-8-10-8z"/><circle cx="8" cy="8" r="1.2" fill="currentColor" stroke="none"/><circle cx="14" cy="7" r="1.2" fill="currentColor" stroke="none"/><circle cx="6.5" cy="12.5" r="1.2" fill="currentColor" stroke="none"/></svg></div><span class="f-label">Ton visuel</span></div>
     <span class="f-plus">+</span>
-    <div class="f-card">
-      <div class="f-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="6" rx="1.5"/><line x1="12" y1="9" x2="12" y2="12"/><rect x="4" y="12" width="16" height="8" rx="1.5"/></svg></div>
-      <span class="f-label">La pose</span>
-    </div>
+    <div class="f-card"><div class="f-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="6" rx="1.5"/><line x1="12" y1="9" x2="12" y2="12"/><rect x="4" y="12" width="16" height="8" rx="1.5"/></svg></div><span class="f-label">La pose</span></div>
     <span class="f-plus">+</span>
-    <div class="f-card">
-      <div class="f-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2L2 7l2.5 3L8 7.5V22h8V7.5l3.5 2.5L22 7l-6-5c0 2.2-1.8 4-4 4S8 4.2 8 2z"/></svg></div>
-      <span class="f-label">Le textile</span>
-    </div>
+    <div class="f-card"><div class="f-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2L2 7l2.5 3L8 7.5V22h8V7.5l3.5 2.5L22 7l-6-5c0 2.2-1.8 4-4 4S8 4.2 8 2z"/></svg></div><span class="f-label">Le textile</span></div>
   </div>
   <div class="f-result rv">= Ta piece perso</div>
-
   <div class="ctas rv">
     <a href="#menus" class="btn btn-p">Voir les menus</a>
-    <a href="https://wa.me/33675008633" class="btn btn-o" target="_blank" rel="noopener">
-      <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6A8.4 8.4 0 0 1 12 3h.5a8.5 8.5 0 0 1 8 8.5z"/></svg>
-      WhatsApp</a>
-    <a href="mailto:contact@lappart98.com" class="btn btn-g">
-      <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
-      Email</a>
+    <a href="https://wa.me/33675008633" class="btn btn-o" target="_blank" rel="noopener"><svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6A8.4 8.4 0 0 1 12 3h.5a8.5 8.5 0 0 1 8 8.5z"/></svg>WhatsApp</a>
+    <a href="mailto:contact@lappart98.com" class="btn btn-g"><svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>Email</a>
   </div>
 </section>
 
-<div class="marquee" aria-hidden="true">
-  <div class="m-track"><span>DTF</span><span>Broderie</span><span>Stickers UV</span><span>T-Shirts</span><span>Sweats</span><span>Casquettes</span><span>Tote bags</span><span>DTF</span><span>Broderie</span><span>Stickers UV</span><span>T-Shirts</span><span>Sweats</span><span>Casquettes</span><span>Tote bags</span></div>
+<div class="marquee" aria-hidden="true"><div class="m-tk"><span>DTF</span><span>Broderie</span><span>Stickers UV</span><span>T-Shirts</span><span>Sweats</span><span>Casquettes</span><span>Tote bags</span><span>DTF</span><span>Broderie</span><span>Stickers UV</span><span>T-Shirts</span><span>Sweats</span><span>Casquettes</span><span>Tote bags</span></div></div>
+
+<section class="sec" id="how"><div class="sec-in">
+  <p class="kicker rv">Simple comme bonjour</p>
+  <h2 class="sec-t rv">Comment <em>ca marche</em></h2>
+  <div class="steps">
+    <div class="step rv"><div class="step-top"><span class="step-n">1</span><div class="step-i"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div></div><h3>Contacte-nous</h3><p>Envoie-nous ton visuel ou ton idee par WhatsApp. On te repond en moins de 2h avec un devis gratuit.</p></div>
+    <div class="step rv"><div class="step-top"><span class="step-n">2</span><div class="step-i"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.1 2.1 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></div></div><h3>On prepare</h3><p>On adapte ton visuel, tu valides le BAT. Tu choisis ton textile et ta technique (DTF, stickers UV ou broderie).</p></div>
+    <div class="step rv"><div class="step-top"><span class="step-n">3</span><div class="step-i"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.7l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.7l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="M3.3 7 12 12l8.7-5M12 22V12"/></svg></div></div><h3>C'est pret</h3><p>Production express dans notre atelier a Gentilly. Retrait sur place ou livraison.</p></div>
+  </div>
+</div></section>
+
+<section class="sec" id="menus"><div class="sec-in">
+  <p class="kicker rv">Sers-toi, c'est a la commande</p>
+  <h2 class="sec-t rv">Les <em>menus</em></h2>
+  <p class="sec-d rv">Choisis ta formule selon la quantite.</p>
+  <div class="menu-list">
+    <div class="menu-item rv" onclick="openCfg('solo')"><div class="mi-info"><h3>Le P'tit Solo <span class="mi-qty">1 a 4</span></h3><p>Ta piece perso, flocage + textile au choix</p></div><div class="mi-price"><span class="fr">Des</span><span class="am">14</span><span class="un">€/piece*</span></div></div>
+    <div class="menu-item rv" onclick="openCfg('team')"><div class="mi-info"><h3>Le Menu Team <span class="mi-qty">5 a 14</span></h3><p>Parfait equipes, assos & familles</p></div><div class="mi-price"><span class="fr">Des</span><span class="am">12</span><span class="un">€/piece*</span></div></div>
+    <div class="menu-item feat rv" onclick="openCfg('bestof')"><div class="mi-info"><h3>Le Maxi Best-Of <span class="mi-qty">15 a 40</span></h3><p>Le plus commande — rapport qualite/prix</p></div><div class="mi-price"><span class="fr">Des</span><span class="am">11</span><span class="un">€/piece*</span></div></div>
+  </div>
+  <div class="menu-note rv">Chaque menu = ton textile + ton flocage + la pose</div>
+  <p class="menu-foot rv">*Prix indicatifs T-Shirt Basique + flocage dos. Tarif selon textile et emplacements.</p>
+</div></section>
+
+<section class="cta-sec" id="contact"><div class="sec-in">
+  <p class="kicker rv">On est la</p>
+  <h2 class="sec-t rv">On <em>t'attend</em></h2>
+  <p class="sec-d rv">Passe nous voir a l'atelier ou envoie ton projet par WhatsApp. Devis gratuit, reponse en moins de 2h.</p>
+  <div class="ctas rv" style="margin:0 auto;"><a href="https://wa.me/33675008633" class="btn btn-p" target="_blank" rel="noopener"><svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6A8.4 8.4 0 0 1 12 3h.5a8.5 8.5 0 0 1 8 8.5z"/></svg>Envoyer un message</a></div>
+  <div class="contacts">
+    <a href="https://maps.google.com/?q=65+rue+Charles+Frerot+94250+Gentilly" class="cc rv" target="_blank" rel="noopener"><div class="cc-i"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div><span class="cc-l">Atelier</span><span class="cc-v">65 rue Charles Frerot, 94250 Gentilly</span></div></a>
+    <a href="https://wa.me/33675008633" class="cc rv" target="_blank" rel="noopener"><div class="cc-i"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.1 2 2 0 0 1 4.1 2H7a2 2 0 0 1 2 1.7c.1.7.4 1.4.7 2.1a2 2 0 0 1-.5 2.1L8 9.7a16 16 0 0 0 6.3 6.3l1.1-1.1a2 2 0 0 1 2.1-.5c.7.3 1.4.5 2.1.7A2 2 0 0 1 22 16.9z"/></svg></div><div><span class="cc-l">WhatsApp</span><span class="cc-v">06 75 00 86 33</span></div></a>
+    <a href="https://instagram.com/lappart_98" class="cc rv" target="_blank" rel="noopener"><div class="cc-i"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg></div><div><span class="cc-l">Instagram</span><span class="cc-v">@lappart_98</span></div></a>
+    <a href="https://www.lappart98.com" class="cc rv" target="_blank" rel="noopener"><div class="cc-i"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10A15.3 15.3 0 0 1 12 2z"/></svg></div><div><span class="cc-l">Site web</span><span class="cc-v">www.lappart98.com</span></div></a>
+  </div>
+</div></section>
+
+<footer class="foot"><div class="foot-in"><div class="foot-logo">L'APPART<b>98</b></div><p>Atelier textile personnalise · Gentilly (94)</p></div></footer>
+
+<!-- ═══ CONFIGURATEUR ═══ -->
+<div class="cfg-ov" id="cfg">
+  <div class="cfg">
+    <div class="cfg-hd"><div><h2 id="cfg-name"></h2><p id="cfg-info"></p></div><button class="cfg-x" onclick="closeCfg()" aria-label="Fermer">&times;</button></div>
+    <div class="cfg-tabs" id="cfg-tabs"></div>
+    <div class="cfg-bd" id="cfg-bd"></div>
+    <div class="cfg-ft" id="cfg-ft"></div>
+  </div>
 </div>
-
-<section class="sec" id="how">
-  <div class="sec-in">
-    <p class="kicker rv">Simple comme bonjour</p>
-    <h2 class="sec-t rv">Comment <em>ca marche</em></h2>
-    <div class="steps">
-      <div class="step rv">
-        <div class="step-top">
-          <span class="step-n">1</span>
-          <div class="step-i"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
-        </div>
-        <h3>Contacte-nous</h3>
-        <p>Envoie-nous ton visuel ou ton idee par WhatsApp. On te repond en moins de 2h avec un devis gratuit.</p>
-      </div>
-      <div class="step rv">
-        <div class="step-top">
-          <span class="step-n">2</span>
-          <div class="step-i"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.1 2.1 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></div>
-        </div>
-        <h3>On prepare</h3>
-        <p>On adapte ton visuel, tu valides le BAT. Tu choisis ton textile et ta technique (DTF, stickers UV ou broderie).</p>
-      </div>
-      <div class="step rv">
-        <div class="step-top">
-          <span class="step-n">3</span>
-          <div class="step-i"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.7l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.7l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="M3.3 7 12 12l8.7-5M12 22V12"/></svg></div>
-        </div>
-        <h3>C'est pret</h3>
-        <p>Production express dans notre atelier a Gentilly. Retrait sur place ou livraison.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="sec" id="menus">
-  <div class="sec-in">
-    <p class="kicker rv">Sers-toi, c'est a la commande</p>
-    <h2 class="sec-t rv">Les <em>menus</em></h2>
-    <p class="sec-d rv">Choisis ta formule selon la quantite — clique pour composer ta commande.</p>
-    <div class="menu-list">
-      <a href="https://wa.me/33675008633?text=Salut%20!%20Je%20suis%20int%C3%A9ress%C3%A9%20par%20le%20P'tit%20Solo" class="menu-item rv" target="_blank" rel="noopener">
-        <div class="mi-info">
-          <h3>Le P'tit Solo <span class="mi-qty">1 a 4</span></h3>
-          <p>Ta piece perso, flocage + textile au choix</p>
-        </div>
-        <div class="mi-price"><span class="fr">Des</span><span class="am">14</span><span class="un">€/piece*</span></div>
-      </a>
-      <a href="https://wa.me/33675008633?text=Salut%20!%20Je%20suis%20int%C3%A9ress%C3%A9%20par%20le%20Menu%20Team" class="menu-item rv" target="_blank" rel="noopener">
-        <div class="mi-info">
-          <h3>Le Menu Team <span class="mi-qty">5 a 14</span></h3>
-          <p>Parfait equipes, assos & familles</p>
-        </div>
-        <div class="mi-price"><span class="fr">Des</span><span class="am">12</span><span class="un">€/piece*</span></div>
-      </a>
-      <a href="https://wa.me/33675008633?text=Salut%20!%20Je%20suis%20int%C3%A9ress%C3%A9%20par%20le%20Maxi%20Best-Of" class="menu-item feat rv" target="_blank" rel="noopener">
-        <div class="mi-info">
-          <h3>Le Maxi Best-Of <span class="mi-qty">15 a 40</span></h3>
-          <p>Le plus commande — rapport qualite/prix</p>
-        </div>
-        <div class="mi-price"><span class="fr">Des</span><span class="am">11</span><span class="un">€/piece*</span></div>
-      </a>
-    </div>
-    <div class="menu-note rv">Chaque menu = ton textile + ton flocage + la pose</div>
-    <p class="menu-foot rv">*Prix indicatifs T-Shirt Basique + flocage dos. Tarif selon textile et emplacements.</p>
-  </div>
-</section>
-
-<section class="cta-sec" id="contact">
-  <div class="sec-in">
-    <p class="kicker rv">On est la</p>
-    <h2 class="sec-t rv">On <em>t'attend</em></h2>
-    <p class="sec-d rv">Passe nous voir a l'atelier ou envoie ton projet par WhatsApp. Devis gratuit, reponse en moins de 2h.</p>
-    <div class="ctas rv" style="margin:0 auto;">
-      <a href="https://wa.me/33675008633" class="btn btn-p" target="_blank" rel="noopener">
-        <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6A8.4 8.4 0 0 1 12 3h.5a8.5 8.5 0 0 1 8 8.5z"/></svg>
-        Envoyer un message</a>
-    </div>
-    <div class="contacts">
-      <a href="https://maps.google.com/?q=65+rue+Charles+Frerot+94250+Gentilly" class="cc rv" target="_blank" rel="noopener">
-        <div class="cc-i"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
-        <div><span class="cc-l">Atelier</span><span class="cc-v">65 rue Charles Frerot, 94250 Gentilly</span></div>
-      </a>
-      <a href="https://wa.me/33675008633" class="cc rv" target="_blank" rel="noopener">
-        <div class="cc-i"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.1 2 2 0 0 1 4.1 2H7a2 2 0 0 1 2 1.7c.1.7.4 1.4.7 2.1a2 2 0 0 1-.5 2.1L8 9.7a16 16 0 0 0 6.3 6.3l1.1-1.1a2 2 0 0 1 2.1-.5c.7.3 1.4.5 2.1.7A2 2 0 0 1 22 16.9z"/></svg></div>
-        <div><span class="cc-l">WhatsApp</span><span class="cc-v">06 75 00 86 33</span></div>
-      </a>
-      <a href="https://instagram.com/lappart_98" class="cc rv" target="_blank" rel="noopener">
-        <div class="cc-i"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg></div>
-        <div><span class="cc-l">Instagram</span><span class="cc-v">@lappart_98</span></div>
-      </a>
-      <a href="https://www.lappart98.com" class="cc rv" target="_blank" rel="noopener">
-        <div class="cc-i"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10A15.3 15.3 0 0 1 12 2z"/></svg></div>
-        <div><span class="cc-l">Site web</span><span class="cc-v">www.lappart98.com</span></div>
-      </a>
-    </div>
-  </div>
-</section>
-
-<footer class="foot">
-  <div class="foot-in">
-    <div class="foot-logo">L'APPART<b>98</b></div>
-    <p>Atelier textile personnalise · Gentilly (94)</p>
-  </div>
-</footer>
 
 <script>
 (function(){
-  "use strict";
-  var io=new IntersectionObserver(function(e){
-    e.forEach(function(x){if(x.isIntersecting){x.target.classList.add("vis");io.unobserve(x.target);}});
-  },{threshold:.12,rootMargin:"0px 0px -32px 0px"});
-  document.querySelectorAll(".rv").forEach(function(el){io.observe(el);});
+"use strict";
 
-  var nav=document.getElementById("nav"),lastY=0;
-  window.addEventListener("scroll",function(){
-    var y=window.scrollY;
-    if(y>80)nav.style.transform=y>lastY&&y>200?"translateY(-100%)":"";
-    else nav.style.transform="";
-    lastY=y;
-  },{passive:true});
-  nav.style.transition="transform .35s cubic-bezier(.16,1,.3,1)";
+/* ── DATA ── */
+var SVG_TSHIRT='<svg viewBox="0 0 48 48" fill="currentColor"><path d="M16 8L8 16l4 4 4-3v21h16V17l4 3 4-4-8-8c0 3.5-3 6-8 6s-8-2.5-8-6z"/></svg>';
+var SVG_HOODIE='<svg viewBox="0 0 48 48" fill="currentColor"><path d="M15 8L7 16l4 5 4-4v21h18V17l4 4 4-5-8-8c0 4-4 7-9 7s-9-3-9-7z"/><ellipse cx="24" cy="7" rx="5" ry="3" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>';
+var SVG_BAG='<svg viewBox="0 0 48 48" fill="currentColor"><rect x="10" y="18" width="28" height="24" rx="2"/><path d="M18 18v-5a6 6 0 0 1 12 0v5" fill="none" stroke="currentColor" stroke-width="2.5"/></svg>';
+var SVG_CAP='<svg viewBox="0 0 48 48" fill="currentColor"><path d="M8 28c0-10 7-16 16-16s16 6 16 16H8z"/><rect x="6" y="27" width="18" height="5" rx="2.5"/></svg>';
+var SVG_POLO='<svg viewBox="0 0 48 48" fill="currentColor"><path d="M16 8L8 16l4 4 4-3v21h16V17l4 3 4-4-8-8c0 3.5-3 6-8 6s-8-2.5-8-6z"/><path d="M20 8l4 7 4-7" fill="none" stroke="#f4f0e8" stroke-width="2"/></svg>';
 
-  document.getElementById("ham").addEventListener("click",function(){nav.classList.toggle("open");});
-  document.querySelectorAll("[data-n]").forEach(function(a){
-    a.addEventListener("click",function(){nav.classList.remove("open");});
-  });
-  document.querySelectorAll('a[href^="#"]').forEach(function(a){
-    a.addEventListener("click",function(e){
-      var t=document.querySelector(this.getAttribute("href"));
-      if(t){e.preventDefault();t.scrollIntoView({behavior:"smooth",block:"start"});}
+var PRODS=[
+  {id:'tshirt-b',name:'T-Shirt Basique 190G',price:9,svg:SVG_TSHIRT,color:'#e8e2d0'},
+  {id:'tshirt-o',name:'T-Shirt Oversize 220G',price:15,svg:SVG_TSHIRT,color:'#2a2722'},
+  {id:'sweat',name:'Sweat Col Rond 280G',price:23,svg:SVG_HOODIE,color:'#2a2722'},
+  {id:'hoodie',name:'Hoodie Classic 260G',price:17,svg:SVG_HOODIE,color:'#3a3832'},
+  {id:'tote',name:'Tote Bag',price:5,svg:SVG_BAG,color:'#2a2722'},
+  {id:'casquette',name:'Casquette Snapback',price:8,svg:SVG_CAP,color:'#2a2722'},
+  {id:'polo',name:'Polo 210G',price:11,svg:SVG_POLO,color:'#2a2722'}
+];
+
+var MENUS={
+  solo:{name:"LE P'TIT SOLO",min:1,max:4,label:'1 A 4 pieces'},
+  team:{name:'LE MENU TEAM',min:5,max:14,label:'5 A 14 pieces'},
+  bestof:{name:'LE MAXI BEST-OF',min:15,max:40,label:'15 A 40 pieces'}
+};
+
+var FLOCS=[{id:'dos',name:'Dos',price:5},{id:'coeur',name:'Coeur',price:3}];
+var TECHS=[
+  {id:'dtf',name:'DTF',badge:'Recommande',desc:'Impression haute qualite, couleurs vives, tous textiles',rec:true},
+  {id:'stickers',name:'Stickers UV',badge:'Sur demande',desc:'Vitrophanie, stickers, surfaces rigides'},
+  {id:'broderie',name:'Broderie',badge:'Sur demande',desc:'Rendu premium, ideal logos & casquettes'}
+];
+
+/* ── STATE ── */
+var S={menu:null,step:0,cart:{},floc:{dos:true,coeur:true,logos:0},tech:'dtf'};
+
+function totalPcs(){var t=0;for(var k in S.cart)t+=S.cart[k];return t;}
+function textileSum(){var t=0;PRODS.forEach(function(p){t+=(S.cart[p.id]||0)*p.price;});return t;}
+function flocPP(){var t=0;FLOCS.forEach(function(f){if(S.floc[f.id])t+=f.price;});t+=S.floc.logos*2;return t;}
+function estimate(){var n=totalPcs();return textileSum()+flocPP()*n;}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+
+/* ── RENDER ── */
+var $=function(id){return document.getElementById(id);};
+
+function renderCfg(){
+  if(!S.menu)return;
+  var m=MENUS[S.menu],pcs=totalPcs(),est=estimate();
+  $('cfg-name').textContent=m.name;
+  $('cfg-info').textContent=S.step===0?m.label:pcs+' pieces'+( est>0?' · ~'+est+'€':'');
+
+  // Tabs
+  var tabs=['Le textile','Personnalisation','Recapitulatif'];
+  $('cfg-tabs').innerHTML=tabs.map(function(t,i){return '<button class="cfg-tab'+(i===S.step?' on':'')+'" onclick="setStep('+i+')">'+t+'</button>';}).join('');
+
+  // Body
+  var h='';
+  if(S.step===0){
+    h='<p class="cfg-lbl">Ajoute les textiles et choisis la quantite pour chacun.</p>';
+    PRODS.forEach(function(p){
+      var q=S.cart[p.id]||0;
+      var txtCol=p.color==='#e8e2d0'||p.color==='#2a2722'&&false?'var(--ink)':'var(--paper)';
+      h+='<div class="prod"><div class="prod-img" style="color:'+p.color+'">'+p.svg+'</div>'
+        +'<div class="prod-info"><div class="prod-name">'+esc(p.name)+'</div><div class="prod-pr">'+p.price+'€/piece</div></div>'
+        +'<div class="qty"><button onclick="setQty(\''+p.id+'\',-1)">−</button><span>'+q+'</span><button onclick="setQty(\''+p.id+'\',1)">+</button></div></div>';
     });
+  }else if(S.step===1){
+    h='<div class="cfg-sec-t">Emplacements flocage</div>';
+    FLOCS.forEach(function(f){
+      var on=S.floc[f.id];
+      h+='<div class="floc'+(on?' on':'')+'" onclick="togFloc(\''+f.id+'\')">'
+        +'<div class="floc-ck"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8l3.5 4L13 4"/></svg></div>'
+        +'<span class="floc-t">'+esc(f.name)+'</span><span class="floc-p">+'+f.price+'€/piece</span></div>';
+    });
+    // Logos supp
+    var lOn=S.floc.logos>0;
+    h+='<div class="floc'+(lOn?' on':'')+'" onclick="togLogos()">'
+      +'<div class="floc-ck"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8l3.5 4L13 4"/></svg></div>'
+      +'<div style="flex:1"><span class="floc-t">Logo(s) supplementaire(s)</span><div class="prod-pr" style="margin-top:2px">+2€/logo/piece</div></div>';
+    if(lOn) h+='<div class="qty" style="margin-left:8px" onclick="event.stopPropagation()"><button onclick="adjLogos(-1)">−</button><span>'+S.floc.logos+'</span><button onclick="adjLogos(1)">+</button></div>';
+    h+='</div>';
+    var fp=flocPP(),pcs2=totalPcs();
+    if(pcs2>0) h+='<div class="cfg-calc">Flocage : '+fp+'€/piece &times; '+pcs2+' = '+fp*pcs2+'€</div>';
+
+    h+='<div class="cfg-sec-t">Technique</div>';
+    TECHS.forEach(function(t){
+      var on=S.tech===t.id;
+      h+='<div class="tec'+(on?' on':'')+'" onclick="setTech(\''+t.id+'\')">'
+        +'<div class="tec-top"><span class="tec-name">'+esc(t.name)+'</span>'
+        +'<span class="tec-badge'+(t.rec?'':' dim')+'">'+esc(t.badge)+'</span>'
+        +'<div class="tec-ck">'+(on?'<svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8l3.5 4L13 4"/></svg>':'')+'</div></div>'
+        +'<div class="tec-desc">'+esc(t.desc)+'</div></div>';
+    });
+  }else{
+    h=renderReceipt();
+  }
+  $('cfg-bd').innerHTML=h;
+
+  // Footer
+  var fh='';
+  if(S.step===0){
+    fh='<button class="btn btn-p" onclick="setStep(1)">Suivant &rsaquo;</button>';
+  }else if(S.step===1){
+    fh='<button class="btn btn-g" onclick="setStep(0)">Retour</button><button class="btn btn-p" onclick="setStep(2)">Suivant &rsaquo;</button>';
+  }else{
+    fh='<button class="btn btn-g" onclick="setStep(1)">Retour</button>'
+      +'<a class="btn btn-p" href="'+waLink()+'" target="_blank" rel="noopener" style="flex:1.2"><svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6"><path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6A8.4 8.4 0 0 1 12 3h.5a8.5 8.5 0 0 1 8 8.5z"/></svg>WhatsApp</a>'
+      +'<a class="btn btn-p" href="'+mailLink()+'" style="flex:1"><svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>Email</a>';
+  }
+  $('cfg-ft').innerHTML=fh;
+}
+
+function renderReceipt(){
+  var m=MENUS[S.menu],pcs=totalPcs(),est=estimate(),ts=textileSum(),fp=flocPP(),ft=fp*pcs;
+  var h='<div class="rcpt-wrap"><div class="rcpt">';
+  h+='<div class="rcpt-head"><h3>L\'Appart 98</h3><p>65 rue Charles Frerot, 94250 Gentilly<br>06 75 00 86 33</p></div>';
+  h+='<hr class="rcpt-dash">';
+  h+='<div class="rcpt-line"><span>FORMULE</span><b>'+esc(m.name)+'</b></div>';
+  h+='<div class="rcpt-line"><span>TECHNIQUE</span><b>'+esc(TECHS.filter(function(t){return t.id===S.tech;})[0].name)+'</b></div>';
+  h+='<hr class="rcpt-dash">';
+  // Textiles
+  h+='<div class="rcpt-line head"><span>TEXTILES</span><span>QTE&nbsp;&nbsp;&nbsp;P.U.&nbsp;&nbsp;&nbsp;PRIX</span></div>';
+  PRODS.forEach(function(p){
+    var q=S.cart[p.id]||0;if(q===0)return;
+    var nm=p.name.length>18?p.name.substring(0,16)+'...':p.name;
+    h+='<div class="rcpt-line"><span>'+esc(nm)+'</span><b>x'+q+'&nbsp;&nbsp;'+p.price+'€&nbsp;&nbsp;'+(q*p.price)+'€</b></div>';
   });
+  h+='<div class="rcpt-line" style="margin-top:4px"><span>Sous-total textile</span><b>'+ts+'€</b></div>';
+  h+='<hr class="rcpt-dash">';
+  // Flocage
+  h+='<div class="rcpt-line head"><span>FLOCAGE</span><span>PRIX</span></div>';
+  FLOCS.forEach(function(f){
+    if(!S.floc[f.id])return;
+    h+='<div class="rcpt-line"><span>'+esc(f.name)+'</span><b>'+pcs+'&times; '+f.price+'€&nbsp;&nbsp;'+(pcs*f.price)+'€</b></div>';
+  });
+  if(S.floc.logos>0){
+    h+='<div class="rcpt-line"><span>Logos supp. ('+S.floc.logos+')</span><b>'+pcs+'&times; '+(S.floc.logos*2)+'€&nbsp;&nbsp;'+(pcs*S.floc.logos*2)+'€</b></div>';
+  }
+  h+='<div class="rcpt-line" style="margin-top:4px"><span>Sous-total flocage</span><b>'+ft+'€</b></div>';
+  h+='<hr class="rcpt-solid">';
+  h+='<div class="rcpt-total"><span>ESTIMATION</span><span>~'+est+'€*</span></div>';
+  h+='<hr class="rcpt-dash">';
+  h+='<p class="rcpt-note">*Prix indicatif HT — devis final apres<br>validation du BAT selon textile et visuel.</p>';
+  h+='<p class="rcpt-merci">Merci de votre visite !</p>';
+  h+='<hr class="rcpt-dash">';
+  h+='<p class="rcpt-cta">Pour recevoir ton devis final et nous<br>envoyer ton logo, ecris-nous sur<br><a href="https://wa.me/33675008633">WhatsApp</a> ou par <a href="mailto:contact@lappart98.com" style="color:var(--ink);font-weight:700">mail</a></p>';
+  h+='</div></div>';
+  return h;
+}
+
+/* ── ACTIONS ── */
+window.openCfg=function(key){
+  S.menu=key;S.step=0;S.cart={};S.floc={dos:true,coeur:true,logos:0};S.tech='dtf';
+  $('cfg').classList.add('open');document.body.style.overflow='hidden';renderCfg();
+};
+window.closeCfg=function(){
+  $('cfg').classList.remove('open');document.body.style.overflow='';S.menu=null;
+};
+window.setStep=function(n){S.step=n;renderCfg();$('cfg-bd').scrollTop=0;};
+window.setQty=function(id,d){
+  var m=MENUS[S.menu],cur=S.cart[id]||0,nv=cur+d;
+  if(nv<0)nv=0;
+  var tot=totalPcs()-cur+nv;
+  if(tot>m.max)return;
+  S.cart[id]=nv;renderCfg();
+};
+window.togFloc=function(id){S.floc[id]=!S.floc[id];renderCfg();};
+window.togLogos=function(){
+  if(S.floc.logos===0)S.floc.logos=1;else S.floc.logos=0;renderCfg();
+};
+window.adjLogos=function(d){
+  S.floc.logos=Math.max(0,S.floc.logos+d);renderCfg();
+};
+window.setTech=function(id){S.tech=id;renderCfg();};
+
+function orderText(){
+  var m=MENUS[S.menu],pcs=totalPcs(),est=estimate();
+  var lines=['Salut ! Voici ma commande :','','Formule : '+m.name,'Technique : '+TECHS.filter(function(t){return t.id===S.tech;})[0].name,'','Textiles :'];
+  PRODS.forEach(function(p){var q=S.cart[p.id]||0;if(q>0)lines.push('- '+p.name+' x'+q+' = '+(q*p.price)+'€');});
+  lines.push('','Flocage :');
+  FLOCS.forEach(function(f){if(S.floc[f.id])lines.push('- '+f.name+' (+'+f.price+'€/piece)');});
+  if(S.floc.logos>0)lines.push('- '+S.floc.logos+' logo(s) supp. (+2€/logo/piece)');
+  lines.push('','Estimation : ~'+est+'€','','Merci !');
+  return lines.join('\n');
+}
+function waLink(){return 'https://wa.me/33675008633?text='+encodeURIComponent(orderText());}
+function mailLink(){return 'mailto:contact@lappart98.com?subject='+encodeURIComponent('Devis L\'Appart 98 — '+MENUS[S.menu].name)+'&body='+encodeURIComponent(orderText());}
+
+/* ── LANDING PAGE JS ── */
+var io=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add('vis');io.unobserve(x.target);}});},{threshold:.12,rootMargin:'0px 0px -32px 0px'});
+document.querySelectorAll('.rv').forEach(function(el){io.observe(el);});
+
+var nav=document.getElementById('nav'),lastY=0;
+window.addEventListener('scroll',function(){var y=window.scrollY;if(y>80)nav.style.transform=y>lastY&&y>200?'translateY(-100%)':'';else nav.style.transform='';lastY=y;},{passive:true});
+
+document.getElementById('ham').addEventListener('click',function(){nav.classList.toggle('open');});
+document.querySelectorAll('[data-n]').forEach(function(a){a.addEventListener('click',function(){nav.classList.remove('open');});});
+document.querySelectorAll('a[href^="#"]').forEach(function(a){a.addEventListener('click',function(e){var t=document.querySelector(this.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'});}});});
+
+$('cfg').addEventListener('click',function(e){if(e.target===this)closeCfg();});
 })();
 </script>
 </body>
